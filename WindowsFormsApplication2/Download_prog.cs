@@ -50,6 +50,28 @@ namespace WindowsFormsApplication2
             Link_to_manga.Text = "http://readmanga.me/****";
             Link_to_manga.ForeColor = Color.Gray;
             status.Text = "Проверка соединения с интернетом";
+            InitializeDataGridView();
+        }
+
+        private void InitializeDataGridView()
+        {
+            dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Rows.Add("http://readmanga.me/", "Русский");
+            this.dataGridView1.Rows.Add("http://mintmanga.com/", "Русский");
+            this.dataGridView1.Rows.Add("http://manga24.ru/", "Русский");
+            this.dataGridView1.Rows.Add("http://mangachan.me/", "Русский");
+            this.dataGridView1.Rows.Add("http://henchan.me/", "Русский");
+            this.dataGridView1.Rows.Add("http://www.mangatown.com/", "English");
+            this.dataGridView1.Rows.Add("http://mangafox.me/", "English(Not Work)");
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
+            /*dataGridView1.Rows[0].DefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
+            dataGridView1.Rows[1].DefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
+            dataGridView1.Rows[2].DefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
+            dataGridView1.Rows[3].DefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
+            dataGridView1.Rows[4].DefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
+            dataGridView1.Rows[5].DefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
+            dataGridView1.Rows[6].DefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
+            */
         }
 
         private void button1_Click(object sender, EventArgs e)//кнопка выбора пути к папке
@@ -1036,7 +1058,13 @@ namespace WindowsFormsApplication2
             }//конец hentaichan
         }
 
-
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            {
+                Process.Start(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+            }
+        }
     }
 
     public class mang_info//класс описания главы + ссылка

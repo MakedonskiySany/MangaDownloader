@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Way_to_save = new System.Windows.Forms.Button();
             this.Found_parts = new System.Windows.Forms.CheckedListBox();
             this.Text_way_to_save = new System.Windows.Forms.TextBox();
@@ -41,18 +44,22 @@
             this.Select_no = new System.Windows.Forms.Button();
             this.Download_this = new System.Windows.Forms.Button();
             this.About = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.About_found = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
             this.stop = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.display_link = new System.Windows.Forms.Label();
             this.pause = new System.Windows.Forms.Button();
             this.down_paret_now = new System.Windows.Forms.Label();
             this.convert_cbr = new System.Windows.Forms.CheckBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.Adress = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Language = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Way_to_save
@@ -283,11 +290,63 @@
             this.convert_cbr.Text = "Конвертировать главы в cbr";
             this.convert_cbr.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Adress,
+            this.Language});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.Location = new System.Drawing.Point(667, 360);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(289, 187);
+            this.dataGridView1.TabIndex = 32;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // Adress
+            // 
+            this.Adress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.Adress.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Adress.HeaderText = "Адрес";
+            this.Adress.Name = "Adress";
+            this.Adress.ReadOnly = true;
+            this.Adress.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Adress.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.Adress.Width = 44;
+            // 
+            // Language
+            // 
+            this.Language.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.Language.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Language.HeaderText = "Язык";
+            this.Language.Name = "Language";
+            this.Language.ReadOnly = true;
+            this.Language.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Language.Width = 41;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 652);
+            this.ClientSize = new System.Drawing.Size(1016, 652);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.convert_cbr);
             this.Controls.Add(this.down_paret_now);
             this.Controls.Add(this.pause);
@@ -311,8 +370,10 @@
             this.Controls.Add(this.Found_parts);
             this.Controls.Add(this.Way_to_save);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MangaDownloader";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,18 +393,21 @@
         private System.Windows.Forms.Button Select_no;
         private System.Windows.Forms.Button Download_this;
         private System.Windows.Forms.Button About;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label About_found;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button stop;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label display_link;
         private System.Windows.Forms.Button pause;
         private System.Windows.Forms.Label down_paret_now;
         private System.Windows.Forms.CheckBox convert_cbr;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.DataGridViewLinkColumn Adress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Language;
     }
 }
 
