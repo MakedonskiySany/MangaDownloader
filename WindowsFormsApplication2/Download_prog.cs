@@ -387,6 +387,7 @@ namespace WindowsFormsApplication2
                                 ss = HTML_first_page.Substring(start + 35, end - start - 36);
                                 img_path = fullpath + @"\" + func_saver.convert_number_page(ii) + ".jpg";//путь к изображению
                                 webClient.DownloadFile(ss, img_path);
+
                             }
                         }
                             
