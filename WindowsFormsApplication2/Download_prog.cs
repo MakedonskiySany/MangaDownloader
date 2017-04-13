@@ -708,7 +708,7 @@ namespace WindowsFormsApplication2
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
                     Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
                     i++;
-                    About_found.Text = "Найдено глав" + i.ToString();
+                    About_found.Text = "Найдено глав: " + i.ToString();
                 }
             }//конец mangatown
         }
@@ -753,7 +753,7 @@ namespace WindowsFormsApplication2
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
                     Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
                     i++;
-                    About_found.Text = "Найдено глав" + i.ToString();
+                    About_found.Text = "Найдено глав: " + i.ToString();
                 }
             }//конец mangafox
         }
@@ -813,7 +813,7 @@ namespace WindowsFormsApplication2
                     Found_parts.Items.Add(name, true);//добавление глав в chekbox found_parts
                     i++;
                 }
-                About_found.Text = "Найдено глав" + i.ToString();//количество найденых глав
+                About_found.Text = "Найдено глав: " + i.ToString();//количество найденых глав
 
             }//конец readmanga и minitmanga
         }
@@ -858,7 +858,7 @@ namespace WindowsFormsApplication2
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
                     Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
                     i++;
-                    About_found.Text = "Найдено глав" + i.ToString();
+                    About_found.Text = "Найдено глав: " + i.ToString();
                 }
             }//конец manga24
         }
@@ -922,7 +922,7 @@ namespace WindowsFormsApplication2
                         arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
                         Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
                         i++;
-                        About_found.Text = "Найдено глав" + i.ToString();
+                        About_found.Text = "Найдено глав: " + i.ToString();
                     }
 
                 }
@@ -978,7 +978,7 @@ namespace WindowsFormsApplication2
                     buf_end = HTML_first_page.IndexOf("Резул", buf_start + 1);
                     parts = HTML_first_page.Substring(buf_start + 3, buf_end - buf_start - 4);
                     Console.WriteLine(parts);
-                    About_found.Text = "Найдено глав " + parts;
+                    About_found.Text = "Найдено глав:  " + parts;
                     
                    //поиск ссылок и названий глав
                     while (i!=0)
@@ -1030,7 +1030,7 @@ namespace WindowsFormsApplication2
                     Console.WriteLine(name);
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
                     Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
-                    About_found.Text = "Найдено глав" + 1;
+                    About_found.Text = "Найдено глав: " + 1;
 
                 }
             }//конец hentaichan

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Way_to_save = new System.Windows.Forms.Button();
             this.Found_parts = new System.Windows.Forms.CheckedListBox();
             this.Text_way_to_save = new System.Windows.Forms.TextBox();
@@ -50,19 +51,16 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.display_link = new System.Windows.Forms.Label();
             this.pause = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.down_paret_now = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.convert_cbr = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // Way_to_save
             // 
-            this.Way_to_save.Location = new System.Drawing.Point(458, 50);
+            this.Way_to_save.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Way_to_save.Location = new System.Drawing.Point(458, 73);
             this.Way_to_save.Name = "Way_to_save";
-            this.Way_to_save.Size = new System.Drawing.Size(158, 20);
+            this.Way_to_save.Size = new System.Drawing.Size(203, 32);
             this.Way_to_save.TabIndex = 0;
             this.Way_to_save.Text = "Выбрать путь сохранения";
             this.Way_to_save.UseVisualStyleBackColor = true;
@@ -70,8 +68,9 @@
             // 
             // Found_parts
             // 
+            this.Found_parts.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Found_parts.FormattingEnabled = true;
-            this.Found_parts.Location = new System.Drawing.Point(5, 124);
+            this.Found_parts.Location = new System.Drawing.Point(5, 184);
             this.Found_parts.Name = "Found_parts";
             this.Found_parts.Size = new System.Drawing.Size(447, 349);
             this.Found_parts.TabIndex = 0;
@@ -80,34 +79,39 @@
             // 
             // Text_way_to_save
             // 
-            this.Text_way_to_save.Location = new System.Drawing.Point(5, 50);
+            this.Text_way_to_save.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Text_way_to_save.Location = new System.Drawing.Point(6, 76);
             this.Text_way_to_save.Name = "Text_way_to_save";
-            this.Text_way_to_save.Size = new System.Drawing.Size(447, 20);
+            this.Text_way_to_save.Size = new System.Drawing.Size(447, 27);
             this.Text_way_to_save.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 36);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(5, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 13);
+            this.label1.Size = new System.Drawing.Size(197, 21);
             this.label1.TabIndex = 3;
             this.label1.Text = "Место сохранения файлов";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 70);
+            this.label2.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(5, 106);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.Size = new System.Drawing.Size(127, 21);
             this.label2.TabIndex = 4;
             this.label2.Text = "Ссылка на мангу";
             // 
             // Link_to_manga
             // 
-            this.Link_to_manga.Location = new System.Drawing.Point(5, 86);
+            this.Link_to_manga.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Link_to_manga.Location = new System.Drawing.Point(6, 130);
             this.Link_to_manga.Name = "Link_to_manga";
-            this.Link_to_manga.Size = new System.Drawing.Size(447, 20);
+            this.Link_to_manga.Size = new System.Drawing.Size(447, 27);
             this.Link_to_manga.TabIndex = 5;
             this.Link_to_manga.Enter += new System.EventHandler(this.Link_to_manga_Enter);
             this.Link_to_manga.Leave += new System.EventHandler(this.Link_to_manga_Leave);
@@ -115,17 +119,19 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 107);
+            this.label3.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(5, 160);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.Size = new System.Drawing.Size(123, 21);
             this.label3.TabIndex = 6;
             this.label3.Text = "Найденые главы";
             // 
             // Search_parts
             // 
-            this.Search_parts.Location = new System.Drawing.Point(458, 86);
+            this.Search_parts.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Search_parts.Location = new System.Drawing.Point(459, 127);
             this.Search_parts.Name = "Search_parts";
-            this.Search_parts.Size = new System.Drawing.Size(158, 20);
+            this.Search_parts.Size = new System.Drawing.Size(203, 32);
             this.Search_parts.TabIndex = 7;
             this.Search_parts.Text = "Поиск глав по ссылке";
             this.Search_parts.UseVisualStyleBackColor = true;
@@ -133,9 +139,10 @@
             // 
             // Select_all
             // 
-            this.Select_all.Location = new System.Drawing.Point(458, 124);
+            this.Select_all.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Select_all.Location = new System.Drawing.Point(458, 184);
             this.Select_all.Name = "Select_all";
-            this.Select_all.Size = new System.Drawing.Size(158, 20);
+            this.Select_all.Size = new System.Drawing.Size(203, 30);
             this.Select_all.TabIndex = 8;
             this.Select_all.Text = "Выбрать все";
             this.Select_all.UseVisualStyleBackColor = true;
@@ -143,9 +150,10 @@
             // 
             // Select_no
             // 
-            this.Select_no.Location = new System.Drawing.Point(458, 148);
+            this.Select_no.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Select_no.Location = new System.Drawing.Point(458, 220);
             this.Select_no.Name = "Select_no";
-            this.Select_no.Size = new System.Drawing.Size(158, 20);
+            this.Select_no.Size = new System.Drawing.Size(203, 30);
             this.Select_no.TabIndex = 9;
             this.Select_no.Text = "Снять выбор со всех";
             this.Select_no.UseVisualStyleBackColor = true;
@@ -153,19 +161,19 @@
             // 
             // Download_this
             // 
-            this.Download_this.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Download_this.Location = new System.Drawing.Point(458, 207);
+            this.Download_this.Font = new System.Drawing.Font("Impress BT Cyr", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Download_this.Location = new System.Drawing.Point(458, 286);
             this.Download_this.Name = "Download_this";
-            this.Download_this.Size = new System.Drawing.Size(158, 127);
+            this.Download_this.Size = new System.Drawing.Size(203, 127);
             this.Download_this.TabIndex = 10;
-            this.Download_this.Text = "Начать скачиваниевыбраных глав";
+            this.Download_this.Text = "Начать скачивание выбраных глав";
             this.Download_this.UseVisualStyleBackColor = true;
             this.Download_this.Click += new System.EventHandler(this.Download_this_Click);
             // 
             // About
             // 
             this.About.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.About.Location = new System.Drawing.Point(458, 424);
+            this.About.Location = new System.Drawing.Point(458, 499);
             this.About.Name = "About";
             this.About.Size = new System.Drawing.Size(158, 48);
             this.About.TabIndex = 11;
@@ -176,37 +184,38 @@
             // About_found
             // 
             this.About_found.AutoSize = true;
-            this.About_found.Location = new System.Drawing.Point(346, 107);
+            this.About_found.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.About_found.Location = new System.Drawing.Point(300, 160);
             this.About_found.Name = "About_found";
-            this.About_found.Size = new System.Drawing.Size(77, 13);
+            this.About_found.Size = new System.Drawing.Size(103, 21);
             this.About_found.TabIndex = 12;
             this.About_found.Text = "Найдено глав";
             // 
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.status.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.status.ForeColor = System.Drawing.Color.Green;
-            this.status.Location = new System.Drawing.Point(110, 549);
+            this.status.Location = new System.Drawing.Point(110, 609);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(91, 13);
+            this.status.Size = new System.Drawing.Size(121, 21);
             this.status.TabIndex = 14;
             this.status.Text = "Состояние ОК";
             this.status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 9);
+            this.label4.Font = new System.Drawing.Font("Impress BT Cyr", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label4.Location = new System.Drawing.Point(2, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(567, 13);
+            this.label4.Size = new System.Drawing.Size(804, 49);
             this.label4.TabIndex = 16;
-            this.label4.Text = "Программа для скачивания манги с сайов http://mintmanga.com, http://readmanga.me/" +
-    ", http://mangachan.ru/  и";
+            this.label4.Text = resources.GetString("label4.Text");
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(5, 534);
+            this.progressBar1.Location = new System.Drawing.Point(5, 594);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(597, 12);
             this.progressBar1.TabIndex = 17;
@@ -214,7 +223,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(2, 515);
+            this.label5.Location = new System.Drawing.Point(2, 575);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(608, 13);
             this.label5.TabIndex = 18;
@@ -225,7 +234,7 @@
             // 
             this.stop.Enabled = false;
             this.stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.stop.Location = new System.Drawing.Point(458, 380);
+            this.stop.Location = new System.Drawing.Point(458, 459);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(158, 34);
             this.stop.TabIndex = 19;
@@ -236,7 +245,7 @@
             // display_link
             // 
             this.display_link.AutoSize = true;
-            this.display_link.Location = new System.Drawing.Point(2, 487);
+            this.display_link.Location = new System.Drawing.Point(2, 547);
             this.display_link.Name = "display_link";
             this.display_link.Size = new System.Drawing.Size(324, 13);
             this.display_link.TabIndex = 20;
@@ -246,7 +255,7 @@
             // 
             this.pause.Enabled = false;
             this.pause.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pause.Location = new System.Drawing.Point(458, 340);
+            this.pause.Location = new System.Drawing.Point(458, 419);
             this.pause.Name = "pause";
             this.pause.Size = new System.Drawing.Size(158, 34);
             this.pause.TabIndex = 21;
@@ -254,65 +263,22 @@
             this.pause.UseVisualStyleBackColor = true;
             this.pause.Click += new System.EventHandler(this.pause_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(432, 559);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(184, 13);
-            this.textBox1.TabIndex = 24;
-            this.textBox1.Text = "Мои контакты DevDimit@yandex.ru ";
-            // 
             // down_paret_now
             // 
             this.down_paret_now.AutoSize = true;
-            this.down_paret_now.Location = new System.Drawing.Point(2, 502);
+            this.down_paret_now.Location = new System.Drawing.Point(2, 562);
             this.down_paret_now.Name = "down_paret_now";
             this.down_paret_now.Size = new System.Drawing.Size(244, 13);
             this.down_paret_now.TabIndex = 27;
             this.down_paret_now.Text = "Скачиваемая глава: Закачка не производится";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(206, 13);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "http://manga24.ru/, http://hentaichan.ru/";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(5, 575);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(597, 13);
-            this.textBox2.TabIndex = 29;
-            this.textBox2.Text = "Если вам понравилась данная программа то можете отблагодарить автора отправив люб" +
-    "ую сумму на QIWI кошелек";
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(5, 589);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(597, 13);
-            this.textBox3.TabIndex = 30;
-            this.textBox3.Text = "+79115613305";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // convert_cbr
             // 
             this.convert_cbr.AutoSize = true;
-            this.convert_cbr.Location = new System.Drawing.Point(458, 174);
+            this.convert_cbr.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.convert_cbr.Location = new System.Drawing.Point(458, 255);
             this.convert_cbr.Name = "convert_cbr";
-            this.convert_cbr.Size = new System.Drawing.Size(170, 17);
+            this.convert_cbr.Size = new System.Drawing.Size(224, 25);
             this.convert_cbr.TabIndex = 31;
             this.convert_cbr.Text = "Конвертировать главы в cbr";
             this.convert_cbr.UseVisualStyleBackColor = true;
@@ -321,13 +287,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 608);
+            this.ClientSize = new System.Drawing.Size(818, 652);
             this.Controls.Add(this.convert_cbr);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.down_paret_now);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pause);
             this.Controls.Add(this.display_link);
             this.Controls.Add(this.stop);
@@ -380,11 +342,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label display_link;
         private System.Windows.Forms.Button pause;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label down_paret_now;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.CheckBox convert_cbr;
     }
 }
