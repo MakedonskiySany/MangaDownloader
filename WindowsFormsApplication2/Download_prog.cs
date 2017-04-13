@@ -371,15 +371,23 @@ namespace WindowsFormsApplication2
                             int cpls, cple;
                             int tcp;
                             subpath = func_saver.filter_foldername(subpath);
-                            dirInfo.CreateSubdirectory(subpath);//создана папка для главы
-                            fullpath = path + @"\" + subpath;
                             HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);
                             cpls = HTML_first_page.IndexOf("var total_pages = ", 0);
                             cple = HTML_first_page.IndexOf(" ;", cpls);
                             tcp = Convert.ToInt32(HTML_first_page.Substring(cpls + 18, cple - cpls - 18));
+                            subpath = subpath + " Chapters - (" + tcp + " Pages)";
+                            dirInfo.CreateSubdirectory(subpath);//создана папка для главы
+                            fullpath = path + @"\" + subpath;
                             for (int ii = 1; ii <= tcp; ii++)
                             {
-                                HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link + ii + ".html");//получить html
+                                if (ii == 1)
+                                {
+                                    HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);//получить html
+                                }
+                                else
+                                {
+                                    HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link + ii + ".html");//получить html
+                                }
                                 start = end = 0;
                                 string ss;
                                 start = HTML_first_page.IndexOf("<meta property=\"og:image\" content=", start);
@@ -691,8 +699,8 @@ namespace WindowsFormsApplication2
                     length = HTML_first_page.IndexOf("</span>", start) - start;
                     text = HTML_first_page.Substring(start, length);//блок с сылкой и названием
                     buf_start = text.IndexOf("<a href=");
-                    buf_end = text.IndexOf(">\r\n", buf_start);
-                    link = text.Substring(buf_start + 9, buf_end - buf_start - 11);//получить адрес главы
+                    buf_end = text.IndexOf("\" ", buf_start);
+                    link = text.Substring(buf_start + 9, buf_end - buf_start - 9);//получить адрес главы
                     j = link.IndexOf("/", 1);
                     global_name = name;
                     buf_start = text.IndexOf(">", buf_start + 1);//title
@@ -743,10 +751,6 @@ namespace WindowsFormsApplication2
                     buf_start = text.IndexOf(">", buf_start + 1);//title
                     buf_end = text.IndexOf("<", buf_start + 1);
                     sn = text.Substring(buf_start + 1, buf_end - buf_start - 1);//получение имени
-                    //buf_start = text.IndexOf("/a>", buf_start + 1);//title
-                    //buf_end = text.IndexOf("</h", buf_start + 1);
-                    //sn1 = text.Substring(buf_start + 67, buf_end - buf_start - 67);
-                    //sn = sn + " - " + sn1;
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
                     Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
                     i++;
