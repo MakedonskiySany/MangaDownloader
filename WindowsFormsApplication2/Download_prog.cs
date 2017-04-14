@@ -47,6 +47,7 @@ namespace WindowsFormsApplication2
         {
             this.Icon = Properties.Resources.ico_3_;           //иконка
             //int i = 0;
+
             Link_to_manga.Text = "http://readmanga.me/****";
             Link_to_manga.ForeColor = Color.Gray;
             status.Text = "Проверка соединения с интернетом";
