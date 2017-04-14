@@ -55,16 +55,16 @@
             this.down_paret_now = new System.Windows.Forms.Label();
             this.convert_cbr = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Adress = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Language = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Way_to_save
             // 
-            this.Way_to_save.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Way_to_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Way_to_save.Location = new System.Drawing.Point(458, 73);
             this.Way_to_save.Name = "Way_to_save";
             this.Way_to_save.Size = new System.Drawing.Size(203, 32);
@@ -75,50 +75,50 @@
             // 
             // Found_parts
             // 
-            this.Found_parts.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Found_parts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Found_parts.FormattingEnabled = true;
             this.Found_parts.Location = new System.Drawing.Point(5, 184);
             this.Found_parts.Name = "Found_parts";
-            this.Found_parts.Size = new System.Drawing.Size(447, 349);
+            this.Found_parts.Size = new System.Drawing.Size(447, 340);
             this.Found_parts.TabIndex = 0;
             this.Found_parts.TabStop = false;
             this.Found_parts.UseTabStops = false;
             // 
             // Text_way_to_save
             // 
-            this.Text_way_to_save.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Text_way_to_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Text_way_to_save.Location = new System.Drawing.Point(6, 76);
             this.Text_way_to_save.Name = "Text_way_to_save";
-            this.Text_way_to_save.Size = new System.Drawing.Size(447, 27);
+            this.Text_way_to_save.Size = new System.Drawing.Size(447, 26);
             this.Text_way_to_save.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(5, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(197, 21);
+            this.label1.Size = new System.Drawing.Size(213, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Место сохранения файлов";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(5, 106);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 21);
+            this.label2.Size = new System.Drawing.Size(135, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "Ссылка на мангу";
             // 
             // Link_to_manga
             // 
-            this.Link_to_manga.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Link_to_manga.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Link_to_manga.Location = new System.Drawing.Point(6, 130);
             this.Link_to_manga.Name = "Link_to_manga";
-            this.Link_to_manga.Size = new System.Drawing.Size(447, 27);
+            this.Link_to_manga.Size = new System.Drawing.Size(447, 26);
             this.Link_to_manga.TabIndex = 5;
             this.Link_to_manga.Enter += new System.EventHandler(this.Link_to_manga_Enter);
             this.Link_to_manga.Leave += new System.EventHandler(this.Link_to_manga_Leave);
@@ -126,16 +126,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(5, 160);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 21);
+            this.label3.Size = new System.Drawing.Size(138, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Найденые главы";
             // 
             // Search_parts
             // 
-            this.Search_parts.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Search_parts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Search_parts.Location = new System.Drawing.Point(459, 127);
             this.Search_parts.Name = "Search_parts";
             this.Search_parts.Size = new System.Drawing.Size(203, 32);
@@ -146,7 +146,7 @@
             // 
             // Select_all
             // 
-            this.Select_all.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Select_all.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Select_all.Location = new System.Drawing.Point(458, 184);
             this.Select_all.Name = "Select_all";
             this.Select_all.Size = new System.Drawing.Size(203, 30);
@@ -157,7 +157,7 @@
             // 
             // Select_no
             // 
-            this.Select_no.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Select_no.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Select_no.Location = new System.Drawing.Point(458, 220);
             this.Select_no.Name = "Select_no";
             this.Select_no.Size = new System.Drawing.Size(203, 30);
@@ -168,7 +168,7 @@
             // 
             // Download_this
             // 
-            this.Download_this.Font = new System.Drawing.Font("Impress BT Cyr", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Download_this.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Download_this.Location = new System.Drawing.Point(458, 286);
             this.Download_this.Name = "Download_this";
             this.Download_this.Size = new System.Drawing.Size(203, 127);
@@ -191,28 +191,28 @@
             // About_found
             // 
             this.About_found.AutoSize = true;
-            this.About_found.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.About_found.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.About_found.Location = new System.Drawing.Point(300, 160);
             this.About_found.Name = "About_found";
-            this.About_found.Size = new System.Drawing.Size(103, 21);
+            this.About_found.Size = new System.Drawing.Size(116, 20);
             this.About_found.TabIndex = 12;
             this.About_found.Text = "Найдено глав";
             // 
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.status.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.status.ForeColor = System.Drawing.Color.Green;
             this.status.Location = new System.Drawing.Point(110, 609);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(121, 21);
+            this.status.Size = new System.Drawing.Size(129, 20);
             this.status.TabIndex = 14;
             this.status.Text = "Состояние ОК";
             this.status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Impress BT Cyr", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label4.Location = new System.Drawing.Point(2, 3);
             this.label4.Name = "label4";
@@ -282,10 +282,10 @@
             // convert_cbr
             // 
             this.convert_cbr.AutoSize = true;
-            this.convert_cbr.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.convert_cbr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.convert_cbr.Location = new System.Drawing.Point(458, 255);
             this.convert_cbr.Name = "convert_cbr";
-            this.convert_cbr.Size = new System.Drawing.Size(224, 25);
+            this.convert_cbr.Size = new System.Drawing.Size(244, 24);
             this.convert_cbr.TabIndex = 31;
             this.convert_cbr.Text = "Конвертировать главы в cbr";
             this.convert_cbr.UseVisualStyleBackColor = true;
@@ -319,7 +319,7 @@
             // Adress
             // 
             this.Adress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
             this.Adress.DefaultCellStyle = dataGridViewCellStyle1;
             this.Adress.HeaderText = "Адрес";
@@ -332,7 +332,7 @@
             // Language
             // 
             this.Language.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.Language.DefaultCellStyle = dataGridViewCellStyle2;
             this.Language.HeaderText = "Язык";
