@@ -57,11 +57,11 @@ namespace WindowsFormsApplication2
         private void InitializeDataGridView()
         {
             dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Rows.Add("http://readmanga.me/", "Русский");
-            this.dataGridView1.Rows.Add("http://mintmanga.com/", "Русский");
-            this.dataGridView1.Rows.Add("http://manga24.ru/", "Русский");
-            this.dataGridView1.Rows.Add("http://mangachan.me/", "Русский");
-            this.dataGridView1.Rows.Add("http://henchan.me/", "Русский");
+            this.dataGridView1.Rows.Add("http://readmanga.me/", "Русский(ITP)");
+            this.dataGridView1.Rows.Add("http://mintmanga.com/", "Русский(ITP)");
+            this.dataGridView1.Rows.Add("http://manga24.ru/", "Русский(ITP)");
+            this.dataGridView1.Rows.Add("http://mangachan.me/", "Русский(ITP)");
+            this.dataGridView1.Rows.Add("http://henchan.me/", "Русский(ITP)");
             this.dataGridView1.Rows.Add("http://www.mangatown.com/", "English");
             this.dataGridView1.Rows.Add("http://mangafox.me/", "English(Not Work)");
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
@@ -132,13 +132,7 @@ namespace WindowsFormsApplication2
         {   //try
             int j=0;//счетчик
             //счетчик выбраных для скачивания глав
-            for (int i = 0; i < Found_parts.Items.Count; i++)
-            {
-                if (Found_parts.GetSelected(i) == true)
-                {
-                    j++;
-                }
-            }
+            j = Download_parts.Items.Count;
             //проверка выбраных глав для скачивания. процесс начнется только если выбрана хоть 1 глава и выбран путь сохранения
             if (j != 0 && Text_way_to_save.Text.IndexOf(@":\") != -1)
             {
@@ -637,6 +631,7 @@ namespace WindowsFormsApplication2
         {
 
             Found_parts.Items.Clear();//очистка поля found_parts
+            Download_parts.Items.Clear();
             try
             {
                 site_link = Link_to_manga.Text;//получение ссылки из поля
