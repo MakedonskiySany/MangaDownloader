@@ -55,10 +55,10 @@
             this.down_paret_now = new System.Windows.Forms.Label();
             this.convert_cbr = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Adress = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Language = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +79,7 @@
             this.Found_parts.FormattingEnabled = true;
             this.Found_parts.Location = new System.Drawing.Point(5, 184);
             this.Found_parts.Name = "Found_parts";
-            this.Found_parts.Size = new System.Drawing.Size(447, 349);
+            this.Found_parts.Size = new System.Drawing.Size(447, 334);
             this.Found_parts.TabIndex = 0;
             this.Found_parts.TabStop = false;
             this.Found_parts.UseTabStops = false;
