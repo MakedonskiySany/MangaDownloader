@@ -99,7 +99,7 @@ namespace WindowsFormsApplication2
         {
             for (int i = 0; i < Found_parts.Items.Count; i++)
             {
-                Found_parts.SetItemChecked(i, true);
+                Found_parts.SetSelected(i, true);
             }
         }
 
@@ -134,7 +134,7 @@ namespace WindowsFormsApplication2
             //счетчик выбраных для скачивания глав
             for (int i = 0; i < Found_parts.Items.Count; i++)
             {
-                if (Found_parts.GetItemChecked(i) == true)
+                if (Found_parts.GetSelected(i) == true)
                 {
                     j++;
                 }
@@ -257,7 +257,7 @@ namespace WindowsFormsApplication2
                              ZipFile zip = new ZipFile();//создание архива
                              zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
 
-                        if (Found_parts.GetItemChecked(i) == true && backgroundWorker1.CancellationPending != true)
+                        if (Found_parts.GetSelected(i) == true && backgroundWorker1.CancellationPending != true)
                         {
                             subpath = arr_mang_inf[i].sub_name.ToString();
                             subpath = func_saver.filter_foldername(subpath);
@@ -330,7 +330,7 @@ namespace WindowsFormsApplication2
                         ZipFile zip = new ZipFile();//создание архива
                         zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
 
-                        if (Found_parts.GetItemChecked(i) == true && backgroundWorker1.CancellationPending != true)
+                        if (Found_parts.GetSelected(i) == true && backgroundWorker1.CancellationPending != true)
                         {
                             subpath = arr_mang_inf[i].sub_name.ToString();
                             subpath = func_saver.filter_foldername(subpath);
@@ -388,20 +388,21 @@ namespace WindowsFormsApplication2
                 {
                     for (int i = 0; i < Found_parts.Items.Count; i++)
                     {
-                        if (Found_parts.GetItemChecked(i) == true && backgroundWorker1.CancellationPending != true)
+                        if (Download_parts.Items.Contains(Found_parts.Items[i]) && backgroundWorker1.CancellationPending != true)
                         {
                             subpath = arr_mang_inf[i].sub_name.ToString();
                             int cpls, cple;
-                            int tcp;
+                            count_page = 1;
                             subpath = func_saver.filter_foldername(subpath);
                             HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);
                             cpls = HTML_first_page.IndexOf("var total_pages = ", 0);
                             cple = HTML_first_page.IndexOf(" ;", cpls);
-                            tcp = Convert.ToInt32(HTML_first_page.Substring(cpls + 18, cple - cpls - 18));
-                            subpath = subpath + " Ch - (" + tcp + " Pages)";
+                            schet = Convert.ToInt32(HTML_first_page.Substring(cpls + 18, cple - cpls - 18));
+                            backgroundWorker1.ReportProgress(schet, "");//число страниц в главе
+                            subpath = subpath + " Ch - (" + schet + " Pages)";
                             dirInfo.CreateSubdirectory(subpath);//создана папка для главы
                             fullpath = path + @"\" + subpath;
-                            for (int ii = 1; ii <= tcp; ii++)
+                            for (int ii = 1; ii <= schet; ii++)
                             {
                                 if (ii == 1)
                                 {
@@ -412,12 +413,13 @@ namespace WindowsFormsApplication2
                                     HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link + ii + ".html");//получить html
                                 }
                                 start = end = 0;
-                                string ss;
                                 start = HTML_first_page.IndexOf("<meta property=\"og:image\" content=", start);
                                 end = HTML_first_page.IndexOf(" />", start);
-                                ss = HTML_first_page.Substring(start + 35, end - start - 36);
+                                buf2 = HTML_first_page.Substring(start + 35, end - start - 36);
                                 img_path = fullpath + @"\" + func_saver.convert_number_page(ii) + ".jpg";//путь к изображению
-                                webClient.DownloadFile(ss, img_path);
+                                webClient.DownloadFile(buf2, img_path);
+                                count_page++;
+                                backgroundWorker1.ReportProgress(count_page, buf2);
                             }
                         }
                             
@@ -436,7 +438,7 @@ namespace WindowsFormsApplication2
                         ZipFile zip = new ZipFile();//создание архива
                         zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
 
-                        if (Found_parts.GetItemChecked(i) == true && backgroundWorker1.CancellationPending != true)
+                        if (Found_parts.GetSelected(i) == true && backgroundWorker1.CancellationPending != true)
                         {
                             
                             subpath = arr_mang_inf[i].sub_name.ToString();
@@ -506,7 +508,7 @@ namespace WindowsFormsApplication2
                           ZipFile zip = new ZipFile();//создание архива
                           zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
 
-                        if (Found_parts.GetItemChecked(i) == true && backgroundWorker1.CancellationPending != true)
+                        if (Found_parts.GetSelected(i) == true && backgroundWorker1.CancellationPending != true)
                         {
 
                             subpath = arr_mang_inf[i].sub_name.ToString();
@@ -616,7 +618,7 @@ namespace WindowsFormsApplication2
         {
             for (int i = 0; i < Found_parts.Items.Count; i++)
             {
-                Found_parts.SetItemChecked(i, false);
+                Found_parts.SetSelected(i, false);
             }
 
         }
@@ -729,7 +731,7 @@ namespace WindowsFormsApplication2
                     buf_end = text.IndexOf("<", buf_start + 1);
                     sn = text.Substring(buf_start + 27, buf_end - buf_start - 47);//получение имени
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
-                    Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
+                    Found_parts.Items.Add(sn);//добавление глав в chekbox found_parts
                     i++;
                     About_found.Text = "Найдено глав: " + i.ToString();
                 }
@@ -774,7 +776,7 @@ namespace WindowsFormsApplication2
                     buf_end = text.IndexOf("<", buf_start + 1);
                     sn = text.Substring(buf_start + 1, buf_end - buf_start - 1);//получение имени
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
-                    Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
+                    Found_parts.Items.Add(sn);//добавление глав в chekbox found_parts
                     i++;
                     About_found.Text = "Найдено глав: " + i.ToString();
                 }
@@ -833,7 +835,7 @@ namespace WindowsFormsApplication2
                     name = name.Remove(buf_start - 2, buf_end - buf_start + 4);//удаление ненужных пробелов
                     name = name.Insert(buf_start - 2, "  ");//название+глава
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
-                    Found_parts.Items.Add(name, true);//добавление глав в chekbox found_parts
+                    Found_parts.Items.Add(name);//добавление глав в chekbox found_parts
                     i++;
                 }
                 About_found.Text = "Найдено глав: " + i.ToString();//количество найденых глав
@@ -879,7 +881,7 @@ namespace WindowsFormsApplication2
                     buf_end = text.IndexOf(">", buf_start + 1);
                     sn = text.Substring(buf_start + 7, buf_end - buf_start - 8);//получение имени
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
-                    Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
+                    Found_parts.Items.Add(sn);//добавление глав в chekbox found_parts
                     i++;
                     About_found.Text = "Найдено глав: " + i.ToString();
                 }
@@ -943,7 +945,7 @@ namespace WindowsFormsApplication2
                         sn = sn.Replace("&nbsp;", "");
                         Console.WriteLine(sn);
                         arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
-                        Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
+                        Found_parts.Items.Add(sn);//добавление глав в chekbox found_parts
                         i++;
                         About_found.Text = "Найдено глав: " + i.ToString();
                     }
@@ -1030,7 +1032,7 @@ namespace WindowsFormsApplication2
                             i++;//количество глав в возвращенной странице
                             arr_mang_inf[k] = new mang_info(link, name, sn);//создание массива объектов -глав
                             k++;//счетчик глав
-                            Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
+                            Found_parts.Items.Add(sn);//добавление глав в chekbox found_parts
 
                         }
                         j=j + 10;//параметр поиска глав
@@ -1052,7 +1054,7 @@ namespace WindowsFormsApplication2
                     sn = name;//название главы=название сингла
                     Console.WriteLine(name);
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
-                    Found_parts.Items.Add(sn, true);//добавление глав в chekbox found_parts
+                    Found_parts.Items.Add(sn);//добавление глав в chekbox found_parts
                     About_found.Text = "Найдено глав: " + 1;
 
                 }
@@ -1065,6 +1067,34 @@ namespace WindowsFormsApplication2
             {
                 Process.Start(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
             }
+        }
+
+        private void add_queue_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < Found_parts.Items.Count; i++)
+            {
+                if ((Found_parts.GetSelected(i)) && !(Download_parts.Items.Contains(Found_parts.Items[i])))
+                {
+                    Download_parts.Items.Add(Found_parts.Items[i]);
+                }
+            }
+            groupBox2.Text = "Глав для скачивания: " + Download_parts.Items.Count;
+        }
+
+        private void Clear_queue_Click(object sender, EventArgs e)
+        {
+            Download_parts.Items.Clear();
+            groupBox2.Text = "Глав для скачивания: 0";
+        }
+
+        private void Text_way_to_save_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Text_way_to_save_Enter(object sender, EventArgs e)
+        {
+            
         }
     }
 
