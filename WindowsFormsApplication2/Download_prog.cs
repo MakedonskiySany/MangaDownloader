@@ -380,6 +380,9 @@ namespace WindowsFormsApplication2
 
                 if (site_link.IndexOf("mangatown") != -1)
                 {
+                    if (convert_cbr.Checked == true) dirInfo.CreateSubdirectory(@"cbr");//создана папка для глав cbr
+                    folder_cbr_name = path + @"\cbr";
+                    ZipFile zip = new ZipFile();//создание архива
                     for (int i = 0; i < Found_parts.Items.Count; i++)
                     {
                         if (Download_parts.Items.Contains(Found_parts.Items[i]) && backgroundWorker1.CancellationPending != true)
@@ -414,11 +417,12 @@ namespace WindowsFormsApplication2
                                 webClient.DownloadFile(buf2, img_path);
                                 count_page++;
                                 backgroundWorker1.ReportProgress(count_page, buf2);
+                                if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
                             }
                         }
-                            
                     }
-                        
+                    if (convert_cbr.Checked == true) zip.Save(folder_cbr_name + @"\" + subpath + @".rar");//сохранение архива
+
                 }
 
                 if (site_link.IndexOf("mangachan.me") != -1)
@@ -1090,6 +1094,64 @@ namespace WindowsFormsApplication2
         private void Text_way_to_save_Enter(object sender, EventArgs e)
         {
             
+        }
+
+        private void volume_count_Click(object sender, EventArgs e)
+        {
+            volume_tree.Nodes.Clear();
+            for (int i = Convert.ToInt32(volume_name.Text); i > 0; i--)
+            {
+                volume_tree.Nodes.Add("Vol " + i);
+            }
+        }
+
+        private void add_volume_Click(object sender, EventArgs e)
+        {
+            List<string> volume = new List<string>();
+            volume = Download_parts.SelectedItems.Cast<string>().ToList();
+            for (int i = 0; i < volume.Count; i++)
+            {
+                volume_tree.SelectedNode.Nodes.Add(volume[i]);
+            }
+            volume_tree.SelectedNode.Expand();
+
+        }
+
+        private void volume_tree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            e.Cancel = Node_check(e.Node);
+        }
+
+        private bool Node_check(TreeNode e)
+        {
+            if (e.Level > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void volume_tree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            int v_count = volume_tree.GetNodeCount(false);
+            int ch_count;
+            for(int i = v_count - 1; i >= 0; i--)
+            {
+                ch_count = volume_tree.Nodes[i].GetNodeCount(false);
+                for(int j = 0; j < ch_count; j++)
+                {
+                    if (Download_parts.Items.Contains(volume_tree.Nodes[i].Nodes[j].Text))
+                    {
+                        Download_parts.Items.Add(volume_tree.Nodes[i].Text);
+                    }
+                }
+
+            }
         }
     }
 

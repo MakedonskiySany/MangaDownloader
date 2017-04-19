@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Way_to_save = new System.Windows.Forms.Button();
             this.Text_way_to_save = new System.Windows.Forms.TextBox();
             this.Link_to_manga = new System.Windows.Forms.TextBox();
@@ -60,6 +60,11 @@
             this.Download_parts = new System.Windows.Forms.ListBox();
             this.add_queue = new System.Windows.Forms.Button();
             this.Clear_queue = new System.Windows.Forms.Button();
+            this.volume_name = new System.Windows.Forms.TextBox();
+            this.volume_count = new System.Windows.Forms.Button();
+            this.volume_tree = new System.Windows.Forms.TreeView();
+            this.add_volume = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -266,14 +271,14 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Adress,
             this.Language});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridView1.Location = new System.Drawing.Point(7, 20);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -285,9 +290,9 @@
             // Adress
             // 
             this.Adress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.Adress.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.Adress.DefaultCellStyle = dataGridViewCellStyle28;
             this.Adress.HeaderText = "Адрес";
             this.Adress.Name = "Adress";
             this.Adress.ReadOnly = true;
@@ -298,9 +303,9 @@
             // Language
             // 
             this.Language.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
-            this.Language.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black;
+            this.Language.DefaultCellStyle = dataGridViewCellStyle29;
             this.Language.HeaderText = "Язык";
             this.Language.Name = "Language";
             this.Language.ReadOnly = true;
@@ -375,11 +380,67 @@
             this.Clear_queue.UseVisualStyleBackColor = true;
             this.Clear_queue.Click += new System.EventHandler(this.Clear_queue_Click);
             // 
+            // volume_name
+            // 
+            this.volume_name.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.volume_name.Location = new System.Drawing.Point(668, 10);
+            this.volume_name.Name = "volume_name";
+            this.volume_name.Size = new System.Drawing.Size(169, 27);
+            this.volume_name.TabIndex = 39;
+            // 
+            // volume_count
+            // 
+            this.volume_count.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.volume_count.Location = new System.Drawing.Point(843, 7);
+            this.volume_count.Name = "volume_count";
+            this.volume_count.Size = new System.Drawing.Size(203, 32);
+            this.volume_count.TabIndex = 40;
+            this.volume_count.Text = "Count";
+            this.volume_count.UseVisualStyleBackColor = true;
+            this.volume_count.Click += new System.EventHandler(this.volume_count_Click);
+            // 
+            // volume_tree
+            // 
+            this.volume_tree.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.volume_tree.Location = new System.Drawing.Point(1009, 135);
+            this.volume_tree.Name = "volume_tree";
+            this.volume_tree.Size = new System.Drawing.Size(155, 287);
+            this.volume_tree.TabIndex = 41;
+            this.volume_tree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.volume_tree_BeforeSelect);
+            this.volume_tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.volume_tree_AfterSelect);
+            // 
+            // add_volume
+            // 
+            this.add_volume.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.add_volume.Location = new System.Drawing.Point(746, 45);
+            this.add_volume.Name = "add_volume";
+            this.add_volume.Size = new System.Drawing.Size(203, 32);
+            this.add_volume.TabIndex = 42;
+            this.add_volume.Text = "Add";
+            this.add_volume.UseVisualStyleBackColor = true;
+            this.add_volume.Click += new System.EventHandler(this.add_volume_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(964, 45);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(203, 32);
+            this.button1.TabIndex = 43;
+            this.button1.Text = "Test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 662);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.add_volume);
+            this.Controls.Add(this.volume_tree);
+            this.Controls.Add(this.volume_count);
+            this.Controls.Add(this.volume_name);
             this.Controls.Add(this.Clear_queue);
             this.Controls.Add(this.Select_no);
             this.Controls.Add(this.Select_all);
@@ -446,6 +507,11 @@
         private System.Windows.Forms.ListBox Download_parts;
         private System.Windows.Forms.Button add_queue;
         private System.Windows.Forms.Button Clear_queue;
+        private System.Windows.Forms.TextBox volume_name;
+        private System.Windows.Forms.Button volume_count;
+        private System.Windows.Forms.TreeView volume_tree;
+        private System.Windows.Forms.Button add_volume;
+        private System.Windows.Forms.Button button1;
     }
 }
 
