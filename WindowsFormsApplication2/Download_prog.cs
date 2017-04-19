@@ -380,48 +380,70 @@ namespace WindowsFormsApplication2
 
                 if (site_link.IndexOf("mangatown") != -1)
                 {
+
+                    ZipFile zip = new ZipFile();//создание архива
                     if (convert_cbr.Checked == true) dirInfo.CreateSubdirectory(@"cbr");//создана папка для глав cbr
                     folder_cbr_name = path + @"\cbr";
-                    ZipFile zip = new ZipFile();//создание архива
                     for (int i = 0; i < Found_parts.Items.Count; i++)
                     {
-                        if (Download_parts.Items.Contains(Found_parts.Items[i]) && backgroundWorker1.CancellationPending != true)
+
+                        int v_count = volume_tree.GetNodeCount(false);
+                        int ch_count;
+                        string last_volume = "", current_volume = "";
+                        for (int q = v_count - 1; q >= 0; q--)
                         {
-                            subpath = arr_mang_inf[i].sub_name.ToString();
-                            int cpls, cple;
-                            count_page = 1;
-                            subpath = func_saver.filter_foldername(subpath);
-                            HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);
-                            cpls = HTML_first_page.IndexOf("var total_pages = ", 0);
-                            cple = HTML_first_page.IndexOf(" ;", cpls);
-                            schet = Convert.ToInt32(HTML_first_page.Substring(cpls + 18, cple - cpls - 18));
-                            backgroundWorker1.ReportProgress(schet, "");//число страниц в главе
-                            subpath = subpath + " Ch - (" + schet + " Pages)";
-                            dirInfo.CreateSubdirectory(subpath);//создана папка для главы
-                            fullpath = path + @"\" + subpath;
-                            for (int ii = 1; ii <= schet; ii++)
+                            ch_count = volume_tree.Nodes[q].GetNodeCount(false);
+                            for (int j = 0; j < ch_count; j++)
                             {
-                                if (ii == 1)
+                                if (volume_tree.Nodes[q].Nodes[j].Text == Found_parts.Items[i] && backgroundWorker1.CancellationPending != true)
                                 {
-                                    HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);//получить html
+                                    current_volume = volume_tree.Nodes[q].Text;
+                                    subpath = arr_mang_inf[i].sub_name.ToString();
+                                    int cpls, cple;
+                                    count_page = 1;
+                                    subpath = func_saver.filter_foldername(subpath);
+                                    HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);
+                                    cpls = HTML_first_page.IndexOf("var total_pages = ", 0);
+                                    cple = HTML_first_page.IndexOf(" ;", cpls);
+                                    schet = Convert.ToInt32(HTML_first_page.Substring(cpls + 18, cple - cpls - 18));
+                                    backgroundWorker1.ReportProgress(schet, "");//число страниц в главе
+                                    subpath = subpath + " Ch - (" + schet + " Pages)";
+                                    dirInfo.CreateSubdirectory(subpath);//создана папка для главы
+                                    fullpath = path + @"\" + subpath;
+                                    for (int ii = 1; ii <= schet; ii++)
+                                    {
+                                        if (ii == 1)
+                                        {
+                                            HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);//получить html
+                                        }
+                                        else
+                                        {
+                                            HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link + ii + ".html");//получить html
+                                        }
+                                        start = end = 0;
+                                        start = HTML_first_page.IndexOf("<meta property=\"og:image\" content=", start);
+                                        end = HTML_first_page.IndexOf(" />", start);
+                                        buf2 = HTML_first_page.Substring(start + 35, end - start - 36);
+                                        img_path = fullpath + @"\" + func_saver.convert_number_page(ii) + ".jpg";//путь к изображению
+                                        webClient.DownloadFile(buf2, img_path);
+                                        count_page++;
+                                        backgroundWorker1.ReportProgress(count_page, buf2);
+                                        if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
+                                    }
+                                    last_volume = current_volume;
+                                    if (convert_cbr.Checked == true && j == ch_count - 1)
+                                    {
+                                        zip.Save(folder_cbr_name + @"\" + volume_tree.Nodes[q].Text + @".rar");
+                                        zip = new ZipFile();//создание архива
+                                    }
                                 }
-                                else
-                                {
-                                    HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link + ii + ".html");//получить html
-                                }
-                                start = end = 0;
-                                start = HTML_first_page.IndexOf("<meta property=\"og:image\" content=", start);
-                                end = HTML_first_page.IndexOf(" />", start);
-                                buf2 = HTML_first_page.Substring(start + 35, end - start - 36);
-                                img_path = fullpath + @"\" + func_saver.convert_number_page(ii) + ".jpg";//путь к изображению
-                                webClient.DownloadFile(buf2, img_path);
-                                count_page++;
-                                backgroundWorker1.ReportProgress(count_page, buf2);
-                                if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
                             }
+                            last_volume = current_volume;
                         }
+
+                        
                     }
-                    if (convert_cbr.Checked == true) zip.Save(folder_cbr_name + @"\" + subpath + @".rar");//сохранение архива
+                    /*if (convert_cbr.Checked == true) zip.Save(folder_cbr_name + @"\" + subpath + @".rar");*///сохранение архива
 
                 }
 
