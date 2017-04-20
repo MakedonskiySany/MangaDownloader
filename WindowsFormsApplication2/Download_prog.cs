@@ -35,6 +35,7 @@ namespace WindowsFormsApplication2
         int count_page;//счетчик страниц в главе. передается в прогресс бар
         WebClient webClient = new WebClient();//вебклиент,функция - скачивает главу в потоке
 
+        List<string>[] volume_list;
 
         //универсальные переменные
         bool count = false;//проверяет попытку пользователя ввести ссылку на мангу
@@ -1141,12 +1142,12 @@ namespace WindowsFormsApplication2
 
         private void volume_tree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
-            e.Cancel = Node_check(e.Node);
+            //e.Cancel = Node_check(e.Node);
         }
 
         private bool Node_check(TreeNode e)
         {
-            if (e.Level > 0)
+            if (e.Level == 0)
             {
                 return true;
             }
@@ -1160,21 +1161,16 @@ namespace WindowsFormsApplication2
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            int v_count = volume_tree.GetNodeCount(false);
-            int ch_count;
-            for(int i = v_count - 1; i >= 0; i--)
+            volume_list = new List<string>[Convert.ToInt32(numericUpDown1.Value)];
+            int c_select = Download_parts.SelectedItems.Count;
+            for(int i = 0; i < c_select; i++)
             {
-                ch_count = volume_tree.Nodes[i].GetNodeCount(false);
-                for(int j = 0; j < ch_count; j++)
-                {
-                    if (Download_parts.Items.Contains(volume_tree.Nodes[i].Nodes[j].Text))
-                    {
-                        Download_parts.Items.Add(volume_tree.Nodes[i].Text);
-                    }
-                }
-
+                volume_list[i].Add(Download_parts.SelectedItems[i].ToString());
             }
+
         }
+
+      
     }
 
     public class mang_info//класс описания главы + ссылка
