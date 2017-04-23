@@ -1219,10 +1219,12 @@ namespace WindowsFormsApplication2
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            int count_parts = Found_parts.SelectedItems.Count;
-            for (int i = Found_parts.SelectedIndex; i < Found_parts.SelectedIndex + count_parts; i++)
+            for (int i = 0; i < Found_parts.Items.Count; i++)
             {
-                Found_parts.Items[i] = arr_mang_inf[i].sub_name;
+                if (Found_parts.GetSelected(i))
+                {
+                    Found_parts.Items[i] = arr_mang_inf[i].sub_name;
+                }
             }
         }
 
