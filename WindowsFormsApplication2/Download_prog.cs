@@ -133,7 +133,7 @@ namespace WindowsFormsApplication2
         {   //try
             int j=0;//счетчик
             //счетчик выбраных для скачивания глав
-            j = Download_parts.Items.Count;
+            j = volume_tree.GetNodeCount(true)-volume_tree.GetNodeCount(false);
             //проверка выбраных глав для скачивания. процесс начнется только если выбрана хоть 1 глава и выбран путь сохранения
             if (j != 0 && Text_way_to_save.Text.IndexOf(@":\") != -1)
             {
@@ -396,7 +396,7 @@ namespace WindowsFormsApplication2
                             ch_count = volume_tree.Nodes[q].GetNodeCount(false);
                             for (int j = 0; j < ch_count; j++)
                             {
-                                if (volume_tree.Nodes[q].Nodes[j].Text == Found_parts.Items[i].ToString() && backgroundWorker1.CancellationPending != true)
+                                if (volume_tree.Nodes[q].Nodes[j].Text == arr_mang_inf[i].sub_name && backgroundWorker1.CancellationPending != true)
                                 {
                                     current_volume = volume_tree.Nodes[q].Text;
                                     subpath = arr_mang_inf[i].sub_name.ToString();
@@ -1148,6 +1148,7 @@ namespace WindowsFormsApplication2
                 volume_tree.Nodes.Add("Vol " + i);
                 add_volume_menu.DropDownItems.Add("Vol " + i);
             }
+            volume_tree.Sort();
         }
 
         private void add_volume_Click(object sender, EventArgs e)
@@ -1198,30 +1199,32 @@ namespace WindowsFormsApplication2
         {
             string name = e.ClickedItem.Text;
             int count_parts = Found_parts.SelectedItems.Count;
-            for(int i=Found_parts.SelectedIndex; i< Found_parts.SelectedIndex + count_parts; i++)
+            for(int i=0; i< Found_parts.Items.Count; i++)
             {
-                if(arr_mang_inf[i].sub_name != Found_parts.Items[i].ToString())
+                if (Found_parts.GetSelected(i))
                 {
-                    MessageBox.Show("Попытка добавить главу в несколько томов", "Ошибка!");
-                    break;
-                }
-                else
-                {
-                    int j = 0;
-                    while (name != volume_tree.Nodes[j].Text)
+                    if (arr_mang_inf[i].sub_name != Found_parts.Items[i].ToString())
                     {
-                        j++;
+                        MessageBox.Show("Попытка добавить главу в несколько томов", "Ошибка!");
+                        break;
                     }
-                    volume_tree.Nodes[j].Nodes.Add(Found_parts.Items[i].ToString());
-                    volume_tree.Nodes[j].ExpandAll();
-                    Found_parts.Items[i] = Found_parts.Items[i] + ":\t" + name;
+                    else
+                    {
+                        int j = 0;
+                        while (name != volume_tree.Nodes[j].Text)
+                        {
+                            j++;
+                        }
+                        volume_tree.Nodes[j].Nodes.Add(Found_parts.Items[i].ToString());
+                        volume_tree.Nodes[j].ExpandAll();
+                        Found_parts.Items[i] = Found_parts.Items[i] + ":\t" + name;
+                    }
                 }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
