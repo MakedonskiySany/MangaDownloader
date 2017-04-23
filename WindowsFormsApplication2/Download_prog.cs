@@ -448,6 +448,26 @@ namespace WindowsFormsApplication2
 
                 }
 
+                if (site_link.IndexOf("mangafox") != -1)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    byte[] buf = new byte[8192];
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://mangafox.me/manga/tokyo_ghoul_re/v10/c121/1.html");
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    Stream resStream = response.GetResponseStream();
+                    int count = 0;
+                    do
+                    {
+                        count = resStream.Read(buf, 0, buf.Length);
+                        if (count != 0)
+                        {
+                            sb.Append(Encoding.Default.GetString(buf, 0, count));
+                        }
+                    }
+                    while (count > 0);
+                    string dfg = sb.ToString();
+                }
+
                 if (site_link.IndexOf("mangachan.me") != -1)
                 {
                     if (convert_cbr.Checked == true) dirInfo.CreateSubdirectory(@"cbr");//создана папка для глав cbr
@@ -1122,9 +1142,11 @@ namespace WindowsFormsApplication2
         private void volume_count_Click(object sender, EventArgs e)
         {
             volume_tree.Nodes.Clear();
+            add_volume_menu.DropDownItems.Clear();
             for (int i = Convert.ToInt32(volume_name.Text); i > 0; i--)
             {
                 volume_tree.Nodes.Add("Vol " + i);
+                add_volume_menu.DropDownItems.Add("Vol " + i);
             }
         }
 
@@ -1159,18 +1181,61 @@ namespace WindowsFormsApplication2
 
         }
 
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if(Found_parts.SelectedItems.Count == 0 || !add_volume_menu.HasDropDownItems)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void add_volume_menu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void add_volume_menu_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            string name = e.ClickedItem.Text;
+            int count_parts = Found_parts.SelectedItems.Count;
+            for(int i=Found_parts.SelectedIndex; i< Found_parts.SelectedIndex + count_parts; i++)
+            {
+                if(arr_mang_inf[i].sub_name != Found_parts.Items[i].ToString())
+                {
+                    MessageBox.Show("Попытка добавить главу в несколько томов", "Ошибка!");
+                    break;
+                }
+                else
+                {
+                    Found_parts.Items[i] = Found_parts.Items[i] + ":\t" + name;
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int count_parts = Found_parts.SelectedItems.Count;
+            for (int i = Found_parts.SelectedIndex; i < Found_parts.SelectedIndex + count_parts; i++)
+            {
+                Found_parts.Items[i] = arr_mang_inf[i].sub_name;
+            }
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
             volume_list = new List<string>[Convert.ToInt32(numericUpDown1.Value)];
             int c_select = Download_parts.SelectedItems.Count;
-            for(int i = 0; i < c_select; i++)
+            for (int i = 0; i < c_select; i++)
             {
                 volume_list[i].Add(Download_parts.SelectedItems[i].ToString());
             }
 
         }
-
-      
     }
 
     public class mang_info//класс описания главы + ссылка
