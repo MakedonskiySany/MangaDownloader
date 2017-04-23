@@ -396,7 +396,7 @@ namespace WindowsFormsApplication2
                             ch_count = volume_tree.Nodes[q].GetNodeCount(false);
                             for (int j = 0; j < ch_count; j++)
                             {
-                                if (volume_tree.Nodes[q].Nodes[j].Text == Found_parts.Items[i] && backgroundWorker1.CancellationPending != true)
+                                if (volume_tree.Nodes[q].Nodes[j].Text == Found_parts.Items[i].ToString() && backgroundWorker1.CancellationPending != true)
                                 {
                                     current_volume = volume_tree.Nodes[q].Text;
                                     subpath = arr_mang_inf[i].sub_name.ToString();
@@ -1207,6 +1207,13 @@ namespace WindowsFormsApplication2
                 }
                 else
                 {
+                    int j = 0;
+                    while (name != volume_tree.Nodes[j].Text)
+                    {
+                        j++;
+                    }
+                    volume_tree.Nodes[j].Nodes.Add(Found_parts.Items[i].ToString());
+                    volume_tree.Nodes[j].ExpandAll();
                     Found_parts.Items[i] = Found_parts.Items[i] + ":\t" + name;
                 }
             }
@@ -1223,6 +1230,20 @@ namespace WindowsFormsApplication2
             {
                 if (Found_parts.GetSelected(i))
                 {
+                    int v_count = volume_tree.GetNodeCount(false);
+                    int ch_count;
+                    for (int q = v_count - 1; q >= 0; q--)
+                    {
+                        ch_count = volume_tree.Nodes[q].GetNodeCount(false);
+                        for (int j = 0; j < ch_count; j++)
+                        {
+                            if (arr_mang_inf[i].sub_name == volume_tree.Nodes[q].Nodes[j].Text)
+                            {
+                                volume_tree.Nodes[q].Nodes[j].Remove();
+                                break;
+                            }
+                        }
+                    }
                     Found_parts.Items[i] = arr_mang_inf[i].sub_name;
                 }
             }
