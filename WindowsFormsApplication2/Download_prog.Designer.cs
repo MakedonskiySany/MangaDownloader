@@ -62,16 +62,13 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.volume_tree = new System.Windows.Forms.TreeView();
-            this.add_queue = new System.Windows.Forms.Button();
-            this.Clear_queue = new System.Windows.Forms.Button();
-            this.volume_name = new System.Windows.Forms.TextBox();
             this.volume_count = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.volume_number = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volume_number)).BeginInit();
             this.SuspendLayout();
             // 
             // Way_to_save
@@ -129,9 +126,9 @@
             // Select_all
             // 
             this.Select_all.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Select_all.Location = new System.Drawing.Point(454, 103);
+            this.Select_all.Location = new System.Drawing.Point(457, 114);
             this.Select_all.Name = "Select_all";
-            this.Select_all.Size = new System.Drawing.Size(87, 73);
+            this.Select_all.Size = new System.Drawing.Size(105, 52);
             this.Select_all.TabIndex = 8;
             this.Select_all.Text = "Выбрать все";
             this.Select_all.UseVisualStyleBackColor = true;
@@ -142,7 +139,7 @@
             this.Select_no.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Select_no.Location = new System.Drawing.Point(454, 205);
             this.Select_no.Name = "Select_no";
-            this.Select_no.Size = new System.Drawing.Size(87, 72);
+            this.Select_no.Size = new System.Drawing.Size(105, 72);
             this.Select_no.TabIndex = 9;
             this.Select_no.Text = "Снять выбор со всех";
             this.Select_no.UseVisualStyleBackColor = true;
@@ -163,7 +160,7 @@
             // 
             this.About.Enabled = false;
             this.About.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.About.Location = new System.Drawing.Point(734, 576);
+            this.About.Location = new System.Drawing.Point(711, 606);
             this.About.Name = "About";
             this.About.Size = new System.Drawing.Size(158, 48);
             this.About.TabIndex = 11;
@@ -214,7 +211,7 @@
             // 
             this.stop.Enabled = false;
             this.stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.stop.Location = new System.Drawing.Point(913, 567);
+            this.stop.Location = new System.Drawing.Point(875, 613);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(158, 34);
             this.stop.TabIndex = 19;
@@ -370,7 +367,7 @@
             this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox2.Controls.Add(this.volume_tree);
             this.groupBox2.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(547, 77);
+            this.groupBox2.Location = new System.Drawing.Point(565, 80);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(428, 374);
             this.groupBox2.TabIndex = 36;
@@ -388,57 +385,26 @@
             this.volume_tree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.volume_tree_BeforeSelect);
             this.volume_tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.volume_tree_AfterSelect);
             // 
-            // add_queue
-            // 
-            this.add_queue.Font = new System.Drawing.Font("Impress BT Cyr", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.add_queue.Location = new System.Drawing.Point(454, 311);
-            this.add_queue.Name = "add_queue";
-            this.add_queue.Size = new System.Drawing.Size(87, 42);
-            this.add_queue.TabIndex = 37;
-            this.add_queue.Text = ">>";
-            this.add_queue.UseVisualStyleBackColor = true;
-            this.add_queue.Click += new System.EventHandler(this.add_queue_Click);
-            // 
-            // Clear_queue
-            // 
-            this.Clear_queue.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Clear_queue.Location = new System.Drawing.Point(454, 386);
-            this.Clear_queue.Name = "Clear_queue";
-            this.Clear_queue.Size = new System.Drawing.Size(87, 52);
-            this.Clear_queue.TabIndex = 38;
-            this.Clear_queue.Text = "Очистить очередь";
-            this.Clear_queue.UseVisualStyleBackColor = true;
-            this.Clear_queue.Click += new System.EventHandler(this.Clear_queue_Click);
-            // 
-            // volume_name
-            // 
-            this.volume_name.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.volume_name.Location = new System.Drawing.Point(668, 10);
-            this.volume_name.Name = "volume_name";
-            this.volume_name.Size = new System.Drawing.Size(70, 27);
-            this.volume_name.TabIndex = 39;
-            this.volume_name.Text = "0";
-            // 
             // volume_count
             // 
             this.volume_count.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.volume_count.Location = new System.Drawing.Point(744, 9);
+            this.volume_count.Location = new System.Drawing.Point(454, 314);
             this.volume_count.Name = "volume_count";
-            this.volume_count.Size = new System.Drawing.Size(203, 32);
+            this.volume_count.Size = new System.Drawing.Size(108, 56);
             this.volume_count.TabIndex = 40;
-            this.volume_count.Text = "Count";
+            this.volume_count.Text = "Количество томов";
             this.volume_count.UseVisualStyleBackColor = true;
             this.volume_count.Click += new System.EventHandler(this.volume_count_Click);
             // 
-            // numericUpDown1
+            // volume_number
             // 
-            this.numericUpDown1.AutoSize = true;
-            this.numericUpDown1.Font = new System.Drawing.Font("Impress BT Cyr", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Location = new System.Drawing.Point(668, 45);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(70, 34);
-            this.numericUpDown1.TabIndex = 44;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.volume_number.AutoSize = true;
+            this.volume_number.Font = new System.Drawing.Font("Impress BT Cyr", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.volume_number.Location = new System.Drawing.Point(471, 376);
+            this.volume_number.Name = "volume_number";
+            this.volume_number.Size = new System.Drawing.Size(70, 34);
+            this.volume_number.TabIndex = 44;
+            this.volume_number.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -449,13 +415,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1085, 662);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.volume_number);
             this.Controls.Add(this.volume_count);
-            this.Controls.Add(this.volume_name);
-            this.Controls.Add(this.Clear_queue);
             this.Controls.Add(this.Select_no);
             this.Controls.Add(this.Select_all);
-            this.Controls.Add(this.add_queue);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Found_parts);
             this.Controls.Add(this.groupBox1);
@@ -483,7 +446,7 @@
             this.groupBox1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volume_number)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,12 +480,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox Found_parts;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button add_queue;
-        private System.Windows.Forms.Button Clear_queue;
-        private System.Windows.Forms.TextBox volume_name;
         private System.Windows.Forms.Button volume_count;
         private System.Windows.Forms.TreeView volume_tree;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown volume_number;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem add_volume_menu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;

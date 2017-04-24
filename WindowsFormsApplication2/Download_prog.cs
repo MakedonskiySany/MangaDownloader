@@ -1113,24 +1113,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void add_queue_Click(object sender, EventArgs e)
-        {
-            //for (int i = 0; i < Found_parts.Items.Count; i++)
-            //{
-            //    if ((Found_parts.GetSelected(i)) && !(Download_parts.Items.Contains(Found_parts.Items[i])))
-            //    {
-            //        Download_parts.Items.Add(Found_parts.Items[i]);
-            //    }
-            //}
-            //groupBox2.Text = "Глав для скачивания: " + Download_parts.Items.Count;
-        }
-
-        private void Clear_queue_Click(object sender, EventArgs e)
-        {
-            //Download_parts.Items.Clear();
-            //groupBox2.Text = "Глав для скачивания: 0";
-        }
-
         private void Text_way_to_save_Leave(object sender, EventArgs e)
         {
 
@@ -1145,7 +1127,7 @@ namespace WindowsFormsApplication2
         {
             volume_tree.Nodes.Clear();
             add_volume_menu.DropDownItems.Clear();
-            for (int i = Convert.ToInt32(volume_name.Text); i > 0; i--)
+            for (int i = Convert.ToInt32(volume_number.Value); i > 0; i--)
             {
                 volume_tree.Nodes.Add("Vol " + i);
                 add_volume_menu.DropDownItems.Add("Vol " + i);
