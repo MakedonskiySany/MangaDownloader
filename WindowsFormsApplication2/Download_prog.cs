@@ -244,74 +244,87 @@ namespace WindowsFormsApplication2
                 {
 
                     if (convert_cbr.Checked == true) dirInfo.CreateSubdirectory(@"cbr");//создана папка для глав cbr
-                    folder_cbr_name = path + @"\"+"cbr";
+                    folder_cbr_name = path + @"\" + "cbr";
 
                     //логика скачивания с mintmanga и readmanga
-                    for (int i = 0; i < Found_parts.Items.Count; i++)
+                        ZipFile zip = new ZipFile();//создание архива
+                        zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
+                        int v_count = volume_tree.GetNodeCount(false);
+                        int ch_count;
+                        string last_volume = "", current_volume = "";
+                    for (int q = v_count - 1; q >= 0; q--)
                     {
-                             ZipFile zip = new ZipFile();//создание архива
-                             zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
-
-                        if (Found_parts.GetSelected(i) == true && backgroundWorker1.CancellationPending != true)
+                        ch_count = volume_tree.Nodes[q].GetNodeCount(false);
+                        for (int j = 0; j < ch_count; j++)
                         {
-                            subpath = arr_mang_inf[i].sub_name.ToString();
-                            subpath = func_saver.filter_foldername(subpath);
-                            Console.WriteLine(subpath);
-                            dirInfo.CreateSubdirectory(subpath);//создана папка для главы
-                            Console.WriteLine(subpath);
-                            fullpath = path + @"\" + subpath;
-                            HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link + @"?mature=1");//получить html
-                            schet = 0;
-                            start = HTML_first_page.IndexOf(@"rm_h.init");
-                            end = HTML_first_page.IndexOf(@"</script>", start);
-                            buf1 = HTML_first_page.Substring(start, end - start);
-                            start = end = s1 = 0;
-                            count_page = 1;
-                            
-                            //считается число страниц в главе
-                            while (s1 != -1)
-                            {   
-                                s1 = buf1.IndexOf(@"['", start);
-                                start = buf1.IndexOf("],", start + 1);
-                                s1 = buf1.IndexOf(@"['", start);
-                                schet++;
-                            }
-                            backgroundWorker1.ReportProgress(schet, "");//счетчик страниц в главе
-
-
-                            start = end = s1 = 0;
-                            count_page = 1;
-                            //скачиваются страницы
-                            while (s1 != -1 && backgroundWorker1.CancellationPending != true)
+                            for (int i = 0; i < Found_parts.Items.Count; i++)
                             {
-                                while (pause_download) System.Threading.Thread.Sleep(1000);//пауза
-                                s1 = buf1.IndexOf(@"['", start);
-                                s2 = buf1.IndexOf(@"'http://", start);
-                                s3 = buf1.IndexOf(@"/',", start);
-                                s4 = buf1.IndexOf(@",", s3 + 4);
-                                p1 = buf1.Substring(s1 + 2, s2 - s1 - 4);//часть 2 ссылки
-                                p2 = buf1.Substring(s2 + 1, s3 - s2);//часть 1 ссылки
-                                p3 = buf1.Substring(s3 + 4, s4 - s3 - 5);//часть 3 ссылки
-                                ibuf1 = p3.IndexOf(@"/", 1);
-                                buf3 = p3.Substring(ibuf1 + 1, p3.Length - ibuf1 - 1);
-                                buf2 = p2  + p1 + p3;//получение ссылки
-                                start = buf1.IndexOf("],", start + 1);
-                                s1 = buf1.IndexOf(@"['", start);
-                                Console.WriteLine(buf2);
-                                Console.WriteLine(fullpath);
-                                Console.WriteLine(buf3);
-                                buf3 = func_saver.filter_nowindows_symbols(buf3);
-                                img_path = fullpath + @"\" + func_saver.convert_number_page(count_page) + ".jpg";//путь к изображению
-                                webClient.DownloadFile(buf2, img_path);
-                                backgroundWorker1.ReportProgress(count_page, buf2);//передается счетчик страниц
-                                count_page++;
-                                if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
-                            }
-                            if (convert_cbr.Checked == true) zip.Save(folder_cbr_name + @"\" + subpath + @".cbr");//сохранение архива
 
+                                if (volume_tree.Nodes[q].Nodes[j].Text == arr_mang_inf[i].sub_name && backgroundWorker1.CancellationPending != true)
+                                {
+                                    subpath = arr_mang_inf[i].sub_name.ToString();
+                                    subpath = func_saver.filter_foldername(subpath);
+                                    Console.WriteLine(subpath);
+                                    Console.WriteLine(subpath);
+                                    HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link + @"?mature=1");//получить html
+                                    schet = 0;
+                                    start = HTML_first_page.IndexOf(@"rm_h.init");
+                                    end = HTML_first_page.IndexOf(@"</script>", start);
+                                    buf1 = HTML_first_page.Substring(start, end - start);
+                                    start = end = s1 = 0;
+                                    count_page = 1;
+                                    string vol_name = arr_mang_inf[i].name.ToString();
+
+                                    //считается число страниц в главе
+                                    while (s1 != -1)
+                                    {
+                                        s1 = buf1.IndexOf(@"['", start);
+                                        start = buf1.IndexOf("],", start + 1);
+                                        s1 = buf1.IndexOf(@"['", start);
+                                        schet++;
+                                    }
+                                    backgroundWorker1.ReportProgress(schet, "");//счетчик страниц в главе
+
+                                    subpath = subpath + " Ch - (" + schet + " Pages)";
+                                    dirInfo.CreateSubdirectory(subpath);//создана папка для главы
+                                    fullpath = path + @"\" + subpath;
+                                    start = end = s1 = 0;
+                                    count_page = 1;
+                                    //скачиваются страницы
+                                    while (s1 != -1 && backgroundWorker1.CancellationPending != true)
+                                    {
+                                        while (pause_download) System.Threading.Thread.Sleep(1000);//пауза
+                                        s1 = buf1.IndexOf(@"['", start);
+                                        s2 = buf1.IndexOf(@"'http://", start);
+                                        s3 = buf1.IndexOf(@"/',", start);
+                                        s4 = buf1.IndexOf(@",", s3 + 4);
+                                        p1 = buf1.Substring(s1 + 2, s2 - s1 - 4);//часть 2 ссылки
+                                        p2 = buf1.Substring(s2 + 1, s3 - s2);//часть 1 ссылки
+                                        p3 = buf1.Substring(s3 + 4, s4 - s3 - 5);//часть 3 ссылки
+                                        ibuf1 = p3.IndexOf(@"/", 1);
+                                        buf3 = p3.Substring(ibuf1 + 1, p3.Length - ibuf1 - 1);
+                                        buf2 = p2 + p1 + p3;//получение ссылки
+                                        start = buf1.IndexOf("],", start + 1);
+                                        s1 = buf1.IndexOf(@"['", start);
+                                        Console.WriteLine(buf2);
+                                        Console.WriteLine(fullpath);
+                                        Console.WriteLine(buf3);
+                                        buf3 = func_saver.filter_nowindows_symbols(buf3);
+                                        img_path = fullpath + @"\" + func_saver.convert_number_page(count_page) + ".jpg";//путь к изображению
+                                        webClient.DownloadFile(buf2, img_path);
+                                        backgroundWorker1.ReportProgress(count_page, buf2);//передается счетчик страниц
+                                        count_page++;
+                                        if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
+                                    }
+                                    if (convert_cbr.Checked == true && j == ch_count - 1)
+                                    {
+                                        zip.Save(folder_cbr_name + @"\" + vol_name + " " + volume_tree.Nodes[q].Text + @".rar");
+                                        zip = new ZipFile();//создание архива
+                                    }
+                                }
+                            }
                         }
                     }
-                    backgroundWorker1.CancelAsync();
                 }
 
                 if (site_link.IndexOf("manga24") != -1)
@@ -878,6 +891,10 @@ namespace WindowsFormsApplication2
                     sn = name.Substring(buf_end + 2, name.Length - buf_end - buf2);
                     name = name.Remove(buf_start - 2, buf_end - buf_start + 4);//удаление ненужных пробелов
                     name = name.Insert(buf_start - 2, "  ");//название+глава
+                    int temp;
+                    temp = name.IndexOf("\r");
+                    name = name.Substring(0, temp);
+                    sn = name;
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
                     Found_parts.Items.Add(name);//добавление глав в chekbox found_parts
                     i++;
@@ -1250,6 +1267,11 @@ namespace WindowsFormsApplication2
             //{
             //    volume_list[i].Add(Download_parts.SelectedItems[i].ToString());
             //}
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
 
         }
     }
