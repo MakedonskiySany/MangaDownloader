@@ -385,21 +385,22 @@ namespace WindowsFormsApplication2
                     ZipFile zip = new ZipFile();//создание архива
                     if (convert_cbr.Checked == true) dirInfo.CreateSubdirectory(@"cbr");//создана папка для глав cbr
                     folder_cbr_name = path + @"\cbr";
-                    for (int i = 0; i < Found_parts.Items.Count; i++)
-                    {
 
-                        int v_count = volume_tree.GetNodeCount(false);
-                        int ch_count;
-                        string last_volume = "", current_volume = "";
-                        for (int q = v_count - 1; q >= 0; q--)
+                    int v_count = volume_tree.GetNodeCount(false);
+                    int ch_count;
+                    string last_volume = "", current_volume = "";
+                    for (int q = v_count - 1; q >= 0; q--)
+                    {
+                        ch_count = volume_tree.Nodes[q].GetNodeCount(false);
+                        for (int j = 0; j < ch_count; j++)
                         {
-                            ch_count = volume_tree.Nodes[q].GetNodeCount(false);
-                            for (int j = 0; j < ch_count; j++)
+                            for (int i = 0; i < Found_parts.Items.Count; i++)
                             {
                                 if (volume_tree.Nodes[q].Nodes[j].Text == arr_mang_inf[i].sub_name && backgroundWorker1.CancellationPending != true)
                                 {
                                     current_volume = volume_tree.Nodes[q].Text;
                                     subpath = arr_mang_inf[i].sub_name.ToString();
+                                    string vol_name = arr_mang_inf[i].name.ToString();
                                     int cpls, cple;
                                     count_page = 1;
                                     subpath = func_saver.filter_foldername(subpath);
@@ -434,7 +435,7 @@ namespace WindowsFormsApplication2
                                     last_volume = current_volume;
                                     if (convert_cbr.Checked == true && j == ch_count - 1)
                                     {
-                                        zip.Save(folder_cbr_name + @"\" + volume_tree.Nodes[q].Text + @".rar");
+                                        zip.Save(folder_cbr_name + @"\" + vol_name + " " + volume_tree.Nodes[q].Text + @".rar");
                                         zip = new ZipFile();//создание архива
                                     }
                                 }
@@ -678,7 +679,7 @@ namespace WindowsFormsApplication2
         {
 
             Found_parts.Items.Clear();//очистка поля found_parts
-            Download_parts.Items.Clear();
+            volume_tree.Nodes.Clear();
             try
             {
                 site_link = Link_to_manga.Text;//получение ссылки из поля
@@ -745,17 +746,18 @@ namespace WindowsFormsApplication2
                 int length;//длина строки буфера
                 string text;//буферная строка
                 string link;//ссылка на главу манги
-                int j = 0;
+                int j = 0, k = 0;
                 string name;//название главы full
                 string sn;//название для папки главы
                 string sn1;
 
                 //логика поиска глав manga24
                 //получение названия для корневой папки
-                j = site_link.IndexOf(@"/", 25);
-                name = site_link.Substring(j + 1, site_link.Length - j - 1);
                 //полученик кода страницы
                 HTML_first_page = func_saver.get_HTML(site_link);
+                j = HTML_first_page.IndexOf("og:title", 1);
+                k = HTML_first_page.IndexOf(" />", j);
+                name = HTML_first_page.Substring(j + 19, k - j - 20);
                 status.Text = "Статус ОК";
                 status.ForeColor = Color.Green;
 
@@ -1113,20 +1115,20 @@ namespace WindowsFormsApplication2
 
         private void add_queue_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < Found_parts.Items.Count; i++)
-            {
-                if ((Found_parts.GetSelected(i)) && !(Download_parts.Items.Contains(Found_parts.Items[i])))
-                {
-                    Download_parts.Items.Add(Found_parts.Items[i]);
-                }
-            }
-            groupBox2.Text = "Глав для скачивания: " + Download_parts.Items.Count;
+            //for (int i = 0; i < Found_parts.Items.Count; i++)
+            //{
+            //    if ((Found_parts.GetSelected(i)) && !(Download_parts.Items.Contains(Found_parts.Items[i])))
+            //    {
+            //        Download_parts.Items.Add(Found_parts.Items[i]);
+            //    }
+            //}
+            //groupBox2.Text = "Глав для скачивания: " + Download_parts.Items.Count;
         }
 
         private void Clear_queue_Click(object sender, EventArgs e)
         {
-            Download_parts.Items.Clear();
-            groupBox2.Text = "Глав для скачивания: 0";
+            //Download_parts.Items.Clear();
+            //groupBox2.Text = "Глав для скачивания: 0";
         }
 
         private void Text_way_to_save_Leave(object sender, EventArgs e)
@@ -1149,17 +1151,21 @@ namespace WindowsFormsApplication2
                 add_volume_menu.DropDownItems.Add("Vol " + i);
             }
             volume_tree.Sort();
+            for(int i = 0; i < Found_parts.Items.Count; i++)
+            {
+                Found_parts.Items[i] = arr_mang_inf[i].sub_name;
+            }
         }
 
         private void add_volume_Click(object sender, EventArgs e)
         {
-            List<string> volume = new List<string>();
-            volume = Download_parts.SelectedItems.Cast<string>().ToList();
-            for (int i = 0; i < volume.Count; i++)
-            {
-                volume_tree.SelectedNode.Nodes.Add(volume[i]);
-            }
-            volume_tree.SelectedNode.Expand();
+            //List<string> volume = new List<string>();
+            //volume = Download_parts.SelectedItems.Cast<string>().ToList();
+            //for (int i = 0; i < volume.Count; i++)
+            //{
+            //    volume_tree.SelectedNode.Nodes.Add(volume[i]);
+            //}
+            //volume_tree.SelectedNode.Expand();
 
         }
 
@@ -1221,6 +1227,7 @@ namespace WindowsFormsApplication2
                     }
                 }
             }
+            groupBox2.Text = "Глав для скачивания: " + (volume_tree.GetNodeCount(true) - volume_tree.GetNodeCount(false));
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1250,16 +1257,17 @@ namespace WindowsFormsApplication2
                     Found_parts.Items[i] = arr_mang_inf[i].sub_name;
                 }
             }
+            groupBox2.Text = "Глав для скачивания: " + (volume_tree.GetNodeCount(true) - volume_tree.GetNodeCount(false));
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            volume_list = new List<string>[Convert.ToInt32(numericUpDown1.Value)];
-            int c_select = Download_parts.SelectedItems.Count;
-            for (int i = 0; i < c_select; i++)
-            {
-                volume_list[i].Add(Download_parts.SelectedItems[i].ToString());
-            }
+            //volume_list = new List<string>[Convert.ToInt32(numericUpDown1.Value)];
+            //int c_select = Download_parts.SelectedItems.Count;
+            //for (int i = 0; i < c_select; i++)
+            //{
+            //    volume_list[i].Add(Download_parts.SelectedItems[i].ToString());
+            //}
 
         }
     }

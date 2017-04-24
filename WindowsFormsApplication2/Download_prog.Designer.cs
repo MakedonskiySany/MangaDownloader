@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Way_to_save = new System.Windows.Forms.Button();
             this.Text_way_to_save = new System.Windows.Forms.TextBox();
             this.Link_to_manga = new System.Windows.Forms.TextBox();
@@ -61,16 +61,12 @@
             this.add_volume_menu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Download_parts = new System.Windows.Forms.ListBox();
             this.volume_tree = new System.Windows.Forms.TreeView();
             this.add_queue = new System.Windows.Forms.Button();
             this.Clear_queue = new System.Windows.Forms.Button();
             this.volume_name = new System.Windows.Forms.TextBox();
             this.volume_count = new System.Windows.Forms.Button();
-            this.add_volume = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -201,7 +197,7 @@
             // 
             this.progressBar1.Location = new System.Drawing.Point(548, 541);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(555, 21);
+            this.progressBar1.Size = new System.Drawing.Size(427, 21);
             this.progressBar1.TabIndex = 17;
             // 
             // label5
@@ -279,14 +275,14 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Adress,
             this.Language});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.Location = new System.Drawing.Point(7, 20);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -298,9 +294,9 @@
             // Adress
             // 
             this.Adress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.Adress.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.Adress.DefaultCellStyle = dataGridViewCellStyle13;
             this.Adress.HeaderText = "Адрес";
             this.Adress.Name = "Adress";
             this.Adress.ReadOnly = true;
@@ -311,9 +307,9 @@
             // Language
             // 
             this.Language.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.Language.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Impress BT Cyr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.Language.DefaultCellStyle = dataGridViewCellStyle14;
             this.Language.HeaderText = "Язык";
             this.Language.Name = "Language";
             this.Language.ReadOnly = true;
@@ -372,34 +368,22 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox2.Controls.Add(this.Download_parts);
             this.groupBox2.Controls.Add(this.volume_tree);
             this.groupBox2.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(547, 77);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(795, 374);
+            this.groupBox2.Size = new System.Drawing.Size(428, 374);
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Глав для скачивания: 0";
-            // 
-            // Download_parts
-            // 
-            this.Download_parts.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Download_parts.FormattingEnabled = true;
-            this.Download_parts.ItemHeight = 21;
-            this.Download_parts.Location = new System.Drawing.Point(0, 24);
-            this.Download_parts.Name = "Download_parts";
-            this.Download_parts.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.Download_parts.Size = new System.Drawing.Size(389, 340);
-            this.Download_parts.TabIndex = 36;
             // 
             // volume_tree
             // 
             this.volume_tree.AllowDrop = true;
             this.volume_tree.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.volume_tree.Location = new System.Drawing.Point(395, 24);
+            this.volume_tree.Location = new System.Drawing.Point(6, 24);
             this.volume_tree.Name = "volume_tree";
-            this.volume_tree.Size = new System.Drawing.Size(389, 340);
+            this.volume_tree.Size = new System.Drawing.Size(410, 340);
             this.volume_tree.TabIndex = 41;
             this.volume_tree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.volume_tree_BeforeSelect);
             this.volume_tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.volume_tree_AfterSelect);
@@ -431,13 +415,14 @@
             this.volume_name.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.volume_name.Location = new System.Drawing.Point(668, 10);
             this.volume_name.Name = "volume_name";
-            this.volume_name.Size = new System.Drawing.Size(169, 27);
+            this.volume_name.Size = new System.Drawing.Size(70, 27);
             this.volume_name.TabIndex = 39;
+            this.volume_name.Text = "0";
             // 
             // volume_count
             // 
             this.volume_count.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.volume_count.Location = new System.Drawing.Point(843, 7);
+            this.volume_count.Location = new System.Drawing.Point(744, 9);
             this.volume_count.Name = "volume_count";
             this.volume_count.Size = new System.Drawing.Size(203, 32);
             this.volume_count.TabIndex = 40;
@@ -445,22 +430,11 @@
             this.volume_count.UseVisualStyleBackColor = true;
             this.volume_count.Click += new System.EventHandler(this.volume_count_Click);
             // 
-            // add_volume
-            // 
-            this.add_volume.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.add_volume.Location = new System.Drawing.Point(668, 45);
-            this.add_volume.Name = "add_volume";
-            this.add_volume.Size = new System.Drawing.Size(203, 32);
-            this.add_volume.TabIndex = 42;
-            this.add_volume.Text = "Add";
-            this.add_volume.UseVisualStyleBackColor = true;
-            this.add_volume.Click += new System.EventHandler(this.add_volume_Click);
-            // 
             // numericUpDown1
             // 
             this.numericUpDown1.AutoSize = true;
             this.numericUpDown1.Font = new System.Drawing.Font("Impress BT Cyr", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Location = new System.Drawing.Point(1052, 7);
+            this.numericUpDown1.Location = new System.Drawing.Point(668, 45);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(70, 34);
             this.numericUpDown1.TabIndex = 44;
@@ -470,37 +444,12 @@
             0,
             0});
             // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(1086, 47);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(203, 32);
-            this.button2.TabIndex = 45;
-            this.button2.Text = "Sort";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Impress BT Cyr", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(877, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 32);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "Test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1354, 662);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(1085, 662);
             this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.add_volume);
             this.Controls.Add(this.volume_count);
             this.Controls.Add(this.volume_name);
             this.Controls.Add(this.Clear_queue);
@@ -568,19 +517,15 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox Found_parts;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox Download_parts;
         private System.Windows.Forms.Button add_queue;
         private System.Windows.Forms.Button Clear_queue;
         private System.Windows.Forms.TextBox volume_name;
         private System.Windows.Forms.Button volume_count;
         private System.Windows.Forms.TreeView volume_tree;
-        private System.Windows.Forms.Button add_volume;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem add_volume_menu;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.Button button1;
     }
 }
 
