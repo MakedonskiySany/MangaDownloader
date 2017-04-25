@@ -58,9 +58,9 @@ namespace WindowsFormsApplication2
         private void InitializeDataGridView()
         {
             dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Rows.Add("http://readmanga.me/", "Русский(ITP)");
-            this.dataGridView1.Rows.Add("http://mintmanga.com/", "Русский(ITP)");
-            this.dataGridView1.Rows.Add("http://manga24.ru/", "Русский(ITP)");
+            this.dataGridView1.Rows.Add("http://readmanga.me/", "Русский");
+            this.dataGridView1.Rows.Add("http://mintmanga.com/", "Русский");
+            this.dataGridView1.Rows.Add("http://manga24.ru/", "Русский");
             this.dataGridView1.Rows.Add("http://mangachan.me/", "Русский(ITP)");
             this.dataGridView1.Rows.Add("http://henchan.me/", "Русский(ITP)");
             this.dataGridView1.Rows.Add("http://www.mangatown.com/", "English");
@@ -247,11 +247,11 @@ namespace WindowsFormsApplication2
                     folder_cbr_name = path + @"\" + "cbr";
 
                     //логика скачивания с mintmanga и readmanga
-                        ZipFile zip = new ZipFile();//создание архива
-                        zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
-                        int v_count = volume_tree.GetNodeCount(false);
-                        int ch_count;
-                        string last_volume = "", current_volume = "";
+                    ZipFile zip = new ZipFile();//создание архива
+                    zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
+                    int v_count = volume_tree.GetNodeCount(false);
+                    int ch_count;
+                    string last_volume = "", current_volume = "";
                     for (int q = v_count - 1; q >= 0; q--)
                     {
                         ch_count = volume_tree.Nodes[q].GetNodeCount(false);
@@ -331,63 +331,77 @@ namespace WindowsFormsApplication2
                 {
                     if (convert_cbr.Checked == true) dirInfo.CreateSubdirectory(@"cbr");//создана папка для глав cbr
                     folder_cbr_name = path + @"\cbr";
-
-                    //логика скачивания с manga24
-                    for (int i = 0; i < Found_parts.Items.Count; i++)
+                    ZipFile zip = new ZipFile(Encoding.GetEncoding("cp866"));//создание архива
+                    int v_count = volume_tree.GetNodeCount(false);
+                    int ch_count;
+                    string last_volume = "", current_volume = "";
+                    for (int q = v_count - 1; q >= 0; q--)
                     {
-                        ZipFile zip = new ZipFile();//создание архива
-                        zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
-
-                        if (Found_parts.GetSelected(i) == true && backgroundWorker1.CancellationPending != true)
+                        ch_count = volume_tree.Nodes[q].GetNodeCount(false);
+                        for (int j = 0; j < ch_count; j++)
                         {
-                            subpath = arr_mang_inf[i].sub_name.ToString();
-                            subpath = func_saver.filter_foldername(subpath);
-                            dirInfo.CreateSubdirectory(subpath);//создана папка для главы
-                            
-                            fullpath = path + @"\" + subpath;
-                            HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);//получить html
-                            s1 = HTML_first_page.IndexOf(@"dir:");
-                            s2 = HTML_first_page.IndexOf(",", s1);
-                            buf1 = HTML_first_page.Substring(s1 + 6, s2 - s1 - 7);//прямая ссылка на сервер на папку, содержащую мангу
-                            s1 = HTML_first_page.IndexOf("images: [[");
-                            s2 = HTML_first_page.IndexOf("page", s1);
-                            buf3 = HTML_first_page.Substring(s1 + 9, s2 - s1 - 20);//получение массива страниц
-                            schet = 0;
-                            start = end = s1 = 0;
-                            count_page = 1;
-
-                            //считается число страниц в главе
-                            while (s1 != -1)
+                            //логика скачивания с manga24
+                            for (int i = 0; i < Found_parts.Items.Count; i++)
                             {
-                                s1 = buf3.IndexOf(@"[", start);
-                                start = buf3.IndexOf("]", s1 + 1);//найти конец старого массива с данныеми
-                                s1 = buf3.IndexOf(@"[", start);//найти начало нового массива с данными
-                                schet++;
+
+                                if (volume_tree.Nodes[q].Nodes[j].Text == arr_mang_inf[i].sub_name && backgroundWorker1.CancellationPending != true)
+                                {
+                                    subpath = arr_mang_inf[i].sub_name.ToString();
+                                    subpath = func_saver.filter_foldername(subpath);
+
+                                    HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);//получить html
+                                    s1 = HTML_first_page.IndexOf(@"dir:");
+                                    s2 = HTML_first_page.IndexOf(",", s1);
+                                    buf1 = HTML_first_page.Substring(s1 + 6, s2 - s1 - 7);//прямая ссылка на сервер на папку, содержащую мангу
+                                    s1 = HTML_first_page.IndexOf("images: [[");
+                                    s2 = HTML_first_page.IndexOf("page", s1);
+                                    buf3 = HTML_first_page.Substring(s1 + 9, s2 - s1 - 20);//получение массива страниц
+                                    schet = 0;
+                                    start = end = s1 = 0;
+                                    count_page = 1;
+                                    string vol_name = arr_mang_inf[i].name.ToString();
+
+                                    //считается число страниц в главе
+                                    while (s1 != -1)
+                                    {
+                                        s1 = buf3.IndexOf(@"[", start);
+                                        start = buf3.IndexOf("]", s1 + 1);//найти конец старого массива с данныеми
+                                        s1 = buf3.IndexOf(@"[", start);//найти начало нового массива с данными
+                                        schet++;
+                                    }
+                                    backgroundWorker1.ReportProgress(schet, "");//число страниц в главе
+
+                                    subpath = subpath + " Ch - (" + schet + " Pages)";
+                                    dirInfo.CreateSubdirectory(subpath);//создана папка для главы
+                                    fullpath = path + @"\" + subpath;
+                                    start = end = s1 = 0;
+                                    count_page = 1;
+
+                                    //скачивание глав
+                                    while (s1 != -1 && backgroundWorker1.CancellationPending != true)
+                                    {
+                                        while (pause_download) System.Threading.Thread.Sleep(1000);//пауза
+                                        s1 = buf3.IndexOf(@"[", start);
+                                        s2 = buf3.IndexOf(@",", s1 + 1);
+                                        p1 = buf3.Substring(s1 + 2, s2 - s1 - 3);
+                                        buf2 = buf1 + p1;//получение ссылки на изображение
+                                        start = buf3.IndexOf("]", s1 + 1);//найти конец старого массива с данныеми
+                                        s1 = buf3.IndexOf(@"[", start);//найти начало нового массива с данными
+                                        p1 = func_saver.filter_nowindows_symbols(p1);
+                                        img_path = fullpath + @"\" + func_saver.convert_number_page(count_page) + ".jpg";//путь к изображению
+
+                                        webClient.DownloadFile(buf2, img_path);
+                                        count_page++;
+                                        backgroundWorker1.ReportProgress(count_page, buf2);
+                                        if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
+                                    }
+                                    if (convert_cbr.Checked == true && j == ch_count - 1)
+                                    {
+                                        zip.Save(folder_cbr_name + @"\" + vol_name + " " + volume_tree.Nodes[q].Text + @".rar");
+                                        zip = new ZipFile(Encoding.GetEncoding("cp866"));//создание архива
+                                    }
+                                }
                             }
-                            backgroundWorker1.ReportProgress(schet, "");//число страниц в главе
-
-                            start = end = s1 = 0;
-                            count_page = 1;
-
-                            //скачивание глав
-                            while (s1 != -1 && backgroundWorker1.CancellationPending != true)
-                            {
-                                while (pause_download) System.Threading.Thread.Sleep(1000);//пауза
-                                s1 = buf3.IndexOf(@"[", start);
-                                s2 = buf3.IndexOf(@",", s1 + 1);
-                                p1 = buf3.Substring(s1 + 2, s2 - s1 - 3);
-                                buf2 = buf1 + p1;//получение ссылки на изображение
-                                start = buf3.IndexOf("]", s1 + 1);//найти конец старого массива с данныеми
-                                s1 = buf3.IndexOf(@"[", start);//найти начало нового массива с данными
-                                p1 = func_saver.filter_nowindows_symbols(p1);
-                                img_path = fullpath + @"\" + func_saver.convert_number_page(count_page) + ".jpg";//путь к изображению
-
-                                webClient.DownloadFile(buf2, img_path);
-                                count_page++;
-                                backgroundWorker1.ReportProgress(count_page, buf2);
-                                if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
-                            }
-                            if (convert_cbr.Checked == true) zip.Save(folder_cbr_name + @"\" + subpath + @".cbr");//сохранение архива
                         }
                     }
                 }
@@ -919,8 +933,6 @@ namespace WindowsFormsApplication2
 
                 //логика поиска глав manga24
                 //получение названия для корневой папки
-                j = site_link.IndexOf(@"/", 10);
-                name = site_link.Substring(j + 1, site_link.Length - j - 1);
                 //полученик кода страницы
                 HTML_first_page = func_saver.get_HTML(site_link);
                 status.Text = "Статус ОК";
@@ -937,10 +949,15 @@ namespace WindowsFormsApplication2
                     j = link.IndexOf("/", 1);
                     link = link.Substring(j, link.Length - j);
                     link = site_link + link;
-                    global_name = name;
                     buf_start = buf_end; ;//title
                     buf_end = text.IndexOf(">", buf_start + 1);
                     sn = text.Substring(buf_start + 7, buf_end - buf_start - 8);//получение имени
+
+                    int ii = HTML_first_page.IndexOf("<h2>", 1);
+                    int jj = HTML_first_page.IndexOf("</h2>", ii); ;
+                    name = HTML_first_page.Substring(ii + 4, jj - ii - 4);
+                    global_name = name;
+                    sn = name + "   " + sn;
                     arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
                     Found_parts.Items.Add(sn);//добавление глав в chekbox found_parts
                     i++;
