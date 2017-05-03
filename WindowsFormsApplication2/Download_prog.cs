@@ -585,72 +585,84 @@ namespace WindowsFormsApplication2
                 {
                     if (convert_cbr.Checked == true) dirInfo.CreateSubdirectory(@"cbr");//создана папка для глав cbr
                     folder_cbr_name = path + @"\cbr";
-
-                    //логика скачивания с hentaichan
-                      for (int i = 0; i < Found_parts.Items.Count; i++)
-                      {
-                          ZipFile zip = new ZipFile();//создание архива
-                          zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
-
-                        if (Found_parts.GetSelected(i) == true && backgroundWorker1.CancellationPending != true)
+                    ZipFile zip = new ZipFile(Encoding.GetEncoding("cp866"));//создание архива
+                    int v_count = volume_tree.GetNodeCount(false);
+                    int ch_count;
+                    string last_volume = "", current_volume = "";
+                    for (int q = v_count - 1; q >= 0; q--)
+                    {
+                        ch_count = volume_tree.Nodes[q].GetNodeCount(false);
+                        for (int j = 0; j < ch_count; j++)
                         {
-
-                            subpath = arr_mang_inf[i].sub_name.ToString();
-                            subpath = func_saver.filter_foldername(subpath);
-                            dirInfo.CreateSubdirectory(subpath);//создана папка для главы
-
-                            fullpath = path + @"\" + subpath;
-                            HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);//получить html
-                            s1 = HTML_first_page.IndexOf("\"thumbs\":[\"");//маска начала списка глав
-                            s2 = HTML_first_page.IndexOf("\"]", s1);//маска конца списка глав
-                            buf1 = HTML_first_page.Substring(s1 + 11, s2 - s1 - 10);//прямая ссылка на сервер на папку, содержащую мангу
-                            schet = 0;
-                            start = end = s1 = 0;
-                            count_page = 1;
-                            Console.WriteLine(buf1);
-                            //счетчик страниц в главе
-                            while (s1 != -1)
+                            //логика скачивания с hentaichan
+                            for (int i = 0; i < Found_parts.Items.Count; i++)
                             {
-                                //здесь buf1 не трогать
-                                s1 = buf1.IndexOf(@"http://", start);
-                                start = s1 + 1;
-                                s1 = buf1.IndexOf(",", start);//проверка последний ли адрес конец массива
-                                schet++;                            //подсчет страниц
 
+                                if (volume_tree.Nodes[q].Nodes[j].Text == arr_mang_inf[i].sub_name && backgroundWorker1.CancellationPending != true)
+                                {
+
+                                    subpath = arr_mang_inf[i].sub_name.ToString();
+                                    string vol_name = arr_mang_inf[i].name.ToString();
+                                    HTML_first_page = func_saver.get_HTML(arr_mang_inf[i].link);//получить html
+                                    s1 = HTML_first_page.IndexOf("\"thumbs\":[\"");//маска начала списка глав
+                                    s2 = HTML_first_page.IndexOf("\"]", s1);//маска конца списка глав
+                                    buf1 = HTML_first_page.Substring(s1 + 11, s2 - s1 - 10);//прямая ссылка на сервер на папку, содержащую мангу
+                                    schet = 0;
+                                    start = end = s1 = 0;
+                                    count_page = 1;
+                                    Console.WriteLine(buf1);
+                                    //счетчик страниц в главе
+                                    while (s1 != -1)
+                                    {
+                                        //здесь buf1 не трогать
+                                        s1 = buf1.IndexOf(@"http://", start);
+                                        start = s1 + 1;
+                                        s1 = buf1.IndexOf(",", start);//проверка последний ли адрес конец массива
+                                        schet++;                            //подсчет страниц
+
+                                    }
+                                    subpath = subpath + " Ch - (" + schet + " Pages)";
+                                    subpath = func_saver.filter_nowindows_symbols(subpath);
+                                    dirInfo.CreateSubdirectory(subpath);//создана папка для главы
+                                    fullpath = path + @"\" + subpath;
+                                    backgroundWorker1.ReportProgress(schet, "");//передать максимальное число страниц
+
+
+                                    start = end = s1 = 0;
+                                    count_page = 1;
+                                    Console.WriteLine(buf1);
+                                    // скачивание файлов
+                                    while (s1 != -1 && backgroundWorker1.CancellationPending != true)
+                                    {
+                                        //здесь buf1 не трогать
+                                        while (pause_download) System.Threading.Thread.Sleep(1000);//пауза
+                                        s1 = buf1.IndexOf(@"http://", start);
+                                        start = s1 + 1;
+                                        s2 = buf1.IndexOf("\"", s1 + 1);//конец ссылки
+                                        p1 = buf1.Substring(s1, s2 - s1);//ссылка на миниатюру. не оьраьотана
+                                        buf2 = p1.Substring(7, p1.IndexOf("."));//нахождение img части ссылки
+                                        p1 = p1.Replace("manganew_thumbs", "manganew");//замененная ссылка. верная
+                                        buf2 = p1;
+                                        s1 = buf1.IndexOf(",", start);//проверка последний ли адрес в массиве
+                                        img_path = fullpath + @"\" + func_saver.convert_number_page(count_page) + ".jpg";//путь к изображению
+                                        webClient.DownloadFile(buf2, img_path);//скачивание изображения
+                                        count_page++;//подсчет страниц
+                                        backgroundWorker1.ReportProgress(count_page, buf2);
+                                        if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
+                                    }
+                                    if (convert_cbr.Checked == true && j == ch_count - 1)
+                                    {
+                                        vol_name = func_saver.filter_nowindows_symbols(vol_name);
+                                        zip.Save(folder_cbr_name + @"\" + vol_name + " " + volume_tree.Nodes[q].Text + @".rar");
+                                        zip = new ZipFile(Encoding.GetEncoding("cp866"));//создание архива
+                                    }
+                                }
                             }
-
-                            backgroundWorker1.ReportProgress(schet, "");//передать максимальное число страниц
-
-
-                            start = end = s1 = 0;
-                            count_page = 1;
-                            Console.WriteLine(buf1);
-                            // скачивание файлов
-                            while (s1 != -1 && backgroundWorker1.CancellationPending != true)
-                            {
-                                //здесь buf1 не трогать
-                                while (pause_download) System.Threading.Thread.Sleep(1000);//пауза
-                                s1 = buf1.IndexOf(@"http://", start);
-                                start = s1 + 1;
-                                s2 = buf1.IndexOf("\"", s1 + 1);//конец ссылки
-                                p1 = buf1.Substring(s1, s2 - s1);//ссылка на миниатюру. не оьраьотана
-                                buf2 = p1.Substring(7, p1.IndexOf("."));//нахождение img части ссылки
-                                p1 = p1.Replace("manganew_thumbs", "manganew");//замененная ссылка. верная
-                                buf2 = p1;
-                                s1 = buf1.IndexOf(",", start);//проверка последний ли адрес в массиве
-                                img_path = fullpath + @"\" + func_saver.convert_number_page(count_page) + ".jpg";//путь к изображению
-                                webClient.DownloadFile(buf2, img_path);//скачивание изображения
-                                count_page++;//подсчет страниц
-                                backgroundWorker1.ReportProgress(count_page, buf2);
-                                if (convert_cbr.Checked == true) zip.AddFile(img_path);//добавление изображения в архив
-                            }
-                            if (convert_cbr.Checked == true) zip.Save(folder_cbr_name + @"\" + subpath + @".cbr");//сохранение архива
                         }
                     }
                 }
 
             
-            backgroundWorker1.CancelAsync();
             }
         }
 
