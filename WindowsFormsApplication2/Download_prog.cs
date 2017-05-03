@@ -468,7 +468,6 @@ namespace WindowsFormsApplication2
                             }
                             last_volume = current_volume;
                         }
-                        volume_tree.Nodes[q].ForeColor = Color.Gray;
 
 
                     }
