@@ -247,8 +247,7 @@ namespace WindowsFormsApplication2
                     folder_cbr_name = path + @"\" + "cbr";
 
                     //логика скачивания с mintmanga и readmanga
-                    ZipFile zip = new ZipFile();//создание архива
-                    zip.ProvisionalAlternateEncoding = Encoding.GetEncoding("cp866");//подключение русского языка
+                    ZipFile zip = new ZipFile(Encoding.GetEncoding("cp866"));//создание архива
                     int v_count = volume_tree.GetNodeCount(false);
                     int ch_count;
                     string last_volume = "", current_volume = "";
@@ -319,7 +318,7 @@ namespace WindowsFormsApplication2
                                     if (convert_cbr.Checked == true && j == ch_count - 1)
                                     {
                                         zip.Save(folder_cbr_name + @"\" + vol_name + " " + volume_tree.Nodes[q].Text + @".rar");
-                                        zip = new ZipFile();//создание архива
+                                        zip = new ZipFile(Encoding.GetEncoding("cp866"));//создание архива
                                     }
                                 }
                             }
@@ -469,8 +468,9 @@ namespace WindowsFormsApplication2
                             }
                             last_volume = current_volume;
                         }
+                        volume_tree.Nodes[q].ForeColor = Color.Gray;
 
-                        
+
                     }
                     /*if (convert_cbr.Checked == true) zip.Save(folder_cbr_name + @"\" + subpath + @".rar");*///сохранение архива
 
@@ -899,17 +899,21 @@ namespace WindowsFormsApplication2
 
                     }
                     name = text.Substring(buf_start + 51, buf_end - buf_start - 67);//получение имени
-                    buf_start = name.IndexOf("  ");//позиция первый двойной пробел 
-                    buf_end = name.LastIndexOf("  ");//позиция последний двойной пробел 
+                    if (name.Contains("рико"))
+                    {
+
+                    }
+                    buf_start = name.IndexOf("   ");//позиция первый двойной пробел 
+                    buf_end = name.LastIndexOf("   ");//позиция последний двойной пробел 
                     global_name = name.Substring(0, buf_start - 2);
                     sn = name.Substring(buf_end + 2, name.Length - buf_end - buf2);
                     name = name.Remove(buf_start - 2, buf_end - buf_start + 4);//удаление ненужных пробелов
-                    name = name.Insert(buf_start - 2, "  ");//название+глава
+                    //name = name.Insert(buf_start - 2, "  ");//название+глава
                     int temp;
                     temp = name.IndexOf("\r");
                     name = name.Substring(0, temp);
                     sn = name;
-                    arr_mang_inf[i] = new mang_info(link, name, sn);//создание массива объектов -глав
+                    arr_mang_inf[i] = new mang_info(link, global_name, sn);//создание массива объектов -глав
                     Found_parts.Items.Add(name);//добавление глав в chekbox found_parts
                     i++;
                 }
