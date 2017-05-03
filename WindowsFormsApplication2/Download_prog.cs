@@ -61,8 +61,8 @@ namespace WindowsFormsApplication2
             this.dataGridView1.Rows.Add("http://readmanga.me/", "Русский");
             this.dataGridView1.Rows.Add("http://mintmanga.com/", "Русский");
             this.dataGridView1.Rows.Add("http://manga24.ru/", "Русский");
-            this.dataGridView1.Rows.Add("http://mangachan.me/", "Русский(ITP)");
-            this.dataGridView1.Rows.Add("http://henchan.me/", "Русский(ITP)");
+            this.dataGridView1.Rows.Add("http://mangachan.me/", "Русский");
+            this.dataGridView1.Rows.Add("http://henchan.me/", "Русский");
             this.dataGridView1.Rows.Add("http://www.mangatown.com/", "English");
             this.dataGridView1.Rows.Add("http://mangafox.me/", "English(Not Work)");
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Impress BT Cyr", 12);
